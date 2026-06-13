@@ -39,7 +39,7 @@ Not everything is documented but it will be soon
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ### Tech Stack
 
