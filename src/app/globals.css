@@ -1,0 +1,5197 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-julius-green: #00ff41;
+  --color-julius-dark: #0a0a0f;
+  --color-julius-card: #161625;
+  --color-julius-border: #1a1a2e;
+  --color-julius-text: #c8e6c9;
+  --color-julius-muted: #7a9a7b;
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: #0a0a0f;
+  --foreground: #c8e6c9;
+  --card: #161625;
+  --card-foreground: #c8e6c9;
+  --popover: #161625;
+  --popover-foreground: #c8e6c9;
+  --primary: #00ff41;
+  --primary-foreground: #0a0a0f;
+  --secondary: #1a1a2e;
+  --secondary-foreground: #c8e6c9;
+  --muted: #1a1a2e;
+  --muted-foreground: #7a9a7b;
+  --accent: #1a1a2e;
+  --accent-foreground: #00ff41;
+  --destructive: #ff4444;
+  --border: #1a1a2e;
+  --input: #1a1a2e;
+  --ring: #00ff41;
+  --chart-1: #00ff41;
+  --chart-2: #ff6b35;
+  --chart-3: #ffd700;
+  --chart-4: #ff4444;
+  --chart-5: #a855f7;
+  --sidebar: #0a0a0f;
+  --sidebar-foreground: #c8e6c9;
+  --sidebar-primary: #00ff41;
+  --sidebar-primary-foreground: #0a0a0f;
+  --sidebar-accent: #1a1a2e;
+  --sidebar-accent-foreground: #c8e6c9;
+  --sidebar-border: #1a1a2e;
+  --sidebar-ring: #00ff41;
+}
+
+.dark {
+  --background: #0a0a0f;
+  --foreground: #c8e6c9;
+  --card: #161625;
+  --card-foreground: #c8e6c9;
+  --popover: #161625;
+  --popover-foreground: #c8e6c9;
+  --primary: #00ff41;
+  --primary-foreground: #0a0a0f;
+  --secondary: #1a1a2e;
+  --secondary-foreground: #c8e6c9;
+  --muted: #1a1a2e;
+  --muted-foreground: #7a9a7b;
+  --accent: #1a1a2e;
+  --accent-foreground: #00ff41;
+  --destructive: #ff4444;
+  --border: #1a1a2e;
+  --input: #1a1a2e;
+  --ring: #00ff41;
+  --chart-1: #00ff41;
+  --chart-2: #ff6b35;
+  --chart-3: #ffd700;
+  --chart-4: #ff4444;
+  --chart-5: #a855f7;
+  --sidebar: #0a0a0f;
+  --sidebar-foreground: #c8e6c9;
+  --sidebar-primary: #00ff41;
+  --sidebar-primary-foreground: #0a0a0f;
+  --sidebar-accent: #1a1a2e;
+  --sidebar-accent-foreground: #c8e6c9;
+  --sidebar-border: #1a1a2e;
+  --sidebar-ring: #00ff41;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* ============================================
+   Custom Scrollbar
+   ============================================ */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0f;
+}
+::-webkit-scrollbar-thumb {
+  background: #1a1a2e;
+  border-radius: 3px;
+  transition: background 0.2s;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #00ff41;
+}
+
+/* ============================================
+   Scanline Effect (subtle)
+   ============================================ */
+.scanline-overlay {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 255, 65, 0.012) 2px,
+    rgba(0, 255, 65, 0.012) 4px
+  );
+}
+
+/* ============================================
+   Grid Background with animation
+   ============================================ */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(0, 255, 65, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 65, 0.025) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: grid-scroll 60s linear infinite;
+}
+
+@keyframes grid-scroll {
+  0% { background-position: 0 0; }
+  100% { background-position: 40px 40px; }
+}
+
+/* ============================================
+   Cursor Blink
+   ============================================ */
+.cursor-blink {
+  display: inline-block;
+  width: 2px;
+  height: 1.1em;
+  background: #00ff41;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ============================================
+   Glitch Text Effect (improved)
+   ============================================ */
+.glitch-text {
+  position: relative;
+  display: inline-block;
+}
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.glitch-text:hover::before {
+  opacity: 0.7;
+  animation: glitch-1 0.3s ease;
+  clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+  color: #ff0040;
+}
+.glitch-text:hover::after {
+  opacity: 0.7;
+  animation: glitch-2 0.3s ease;
+  clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
+  color: #00fff9;
+}
+
+@keyframes glitch-1 {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+@keyframes glitch-2 {
+  0% { transform: translate(0); }
+  20% { transform: translate(2px, -2px); }
+  40% { transform: translate(2px, 2px); }
+  60% { transform: translate(-2px, -2px); }
+  80% { transform: translate(-2px, 2px); }
+  100% { transform: translate(0); }
+}
+
+/* ============================================
+   Card Hover Glow (enhanced)
+   ============================================ */
+.card-glow {
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.card-glow:hover {
+  border-color: rgba(0, 255, 65, 0.3);
+  box-shadow: 0 0 20px rgba(0, 255, 65, 0.08), 0 4px 20px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Card with top accent bar on hover */
+.card-accent {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.card-accent::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #00ff41;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.card-accent:hover::before {
+  opacity: 1;
+}
+.card-accent:hover {
+  border-color: rgba(0, 255, 65, 0.2);
+  box-shadow: 0 0 15px rgba(0, 255, 65, 0.06);
+}
+
+/* ============================================
+   Terminal Style Box
+   ============================================ */
+.terminal-box {
+  background: #0d0d18;
+  border: 1px solid #1a1a2e;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  padding-left: 2rem;
+  font-family: var(--font-geist-mono), monospace;
+  position: relative;
+  overflow-x: auto;
+}
+.terminal-box::before {
+  content: '$ ';
+  color: #00ff41;
+  font-weight: bold;
+  position: absolute;
+  left: 0.75rem;
+}
+
+/* ============================================
+   Level Color Utilities
+   ============================================ */
+.level-l1 { color: #00ff41; }
+.level-l2 { color: #ff6b35; }
+.level-l3 { color: #ffd700; }
+.level-l4 { color: #ff4444; }
+.level-l5 { color: #a855f7; }
+
+.level-bg-l1 { background-color: rgba(0, 255, 65, 0.1); border-color: rgba(0, 255, 65, 0.3); }
+.level-bg-l2 { background-color: rgba(255, 107, 53, 0.1); border-color: rgba(255, 107, 53, 0.3); }
+.level-bg-l3 { background-color: rgba(255, 215, 0, 0.1); border-color: rgba(255, 215, 0, 0.3); }
+.level-bg-l4 { background-color: rgba(255, 68, 68, 0.1); border-color: rgba(255, 68, 68, 0.3); }
+.level-bg-l5 { background-color: rgba(168, 85, 247, 0.1); border-color: rgba(168, 85, 247, 0.3); }
+
+/* ============================================
+   Pulse animation for status indicators
+   ============================================ */
+.pulse-green {
+  animation: pulse-green 2s infinite;
+}
+@keyframes pulse-green {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0, 255, 65, 0.4); }
+  50% { box-shadow: 0 0 0 6px rgba(0, 255, 65, 0); }
+}
+
+/* ============================================
+   Security score ring animation
+   ============================================ */
+.score-ring {
+  transition: stroke-dashoffset 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================
+   Typing animation for terminal text
+   ============================================ */
+.typing-text {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid #00ff41;
+  animation: typing 2s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: #00ff41; }
+}
+
+/* ============================================
+   Fade-in animation for tab content
+   ============================================ */
+.fade-in {
+  animation: fadeInUp 0.4s ease-out;
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================
+   Slide-in animation for notifications
+   ============================================ */
+.slide-in-right {
+  animation: slideInRight 0.3s ease-out;
+}
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* ============================================
+   Shimmer loading effect
+   ============================================ */
+.shimmer {
+  background: linear-gradient(90deg, transparent 0%, rgba(0, 255, 65, 0.05) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* ============================================
+   Count-up number animation
+   ============================================ */
+.count-up {
+  display: inline-block;
+  animation: countPulse 0.6s ease-out;
+}
+@keyframes countPulse {
+  0% { transform: scale(0.8); opacity: 0; }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* ============================================
+   Breathing glow for security alerts
+   ============================================ */
+.breathing-glow {
+  animation: breathe 3s ease-in-out infinite;
+}
+@keyframes breathe {
+  0%, 100% { box-shadow: 0 0 5px rgba(255, 68, 68, 0.2); }
+  50% { box-shadow: 0 0 20px rgba(255, 68, 68, 0.4); }
+}
+
+/* ============================================
+   Status indicator pulse variants
+   ============================================ */
+.status-pulse-green {
+  animation: statusPulseGreen 2s infinite;
+}
+@keyframes statusPulseGreen {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0, 255, 65, 0.4); }
+  50% { box-shadow: 0 0 0 4px rgba(0, 255, 65, 0); }
+}
+
+.status-pulse-red {
+  animation: statusPulseRed 1.5s infinite;
+}
+@keyframes statusPulseRed {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 68, 68, 0.4); }
+  50% { box-shadow: 0 0 0 4px rgba(255, 68, 68, 0); }
+}
+
+/* ============================================
+   Tab indicator animation
+   ============================================ */
+.tab-indicator {
+  position: relative;
+}
+.tab-indicator::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: #00ff41;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+.tab-indicator:hover::after {
+  width: 60%;
+}
+.tab-indicator[data-state="active"]::after {
+  width: 80%;
+}
+
+/* ============================================
+   Hover underline effect
+   ============================================ */
+.hover-underline {
+  position: relative;
+  display: inline-block;
+}
+.hover-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #00ff41;
+  transition: width 0.3s ease;
+}
+.hover-underline:hover::after {
+  width: 100%;
+}
+
+/* ============================================
+   Focus ring for inputs (enhanced)
+   ============================================ */
+input:focus, textarea:focus, select:focus {
+  box-shadow: 0 0 0 2px rgba(0, 255, 65, 0.15);
+  border-color: rgba(0, 255, 65, 0.4) !important;
+}
+
+/* ============================================
+   Switch toggle enhancement
+   ============================================ */
+button[role="switch"] {
+  transition: all 0.2s ease;
+}
+button[role="switch"][data-state="checked"] {
+  background-color: #00ff41 !important;
+}
+
+/* ============================================
+   Badge pulse for unread items
+   ============================================ */
+.badge-pulse {
+  animation: badgePulse 2s infinite;
+}
+@keyframes badgePulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* ============================================
+   Matrix Rain Effect (subtle background)
+   ============================================ */
+.matrix-bg {
+  position: relative;
+  overflow: hidden;
+}
+.matrix-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(0, 255, 65, 0.01) 50%,
+    transparent 100%
+  );
+  animation: matrixFall 8s linear infinite;
+  pointer-events: none;
+}
+@keyframes matrixFall {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+/* ============================================
+   Card border glow on focus-within
+   ============================================ */
+.card-focus-glow:focus-within {
+  border-color: rgba(0, 255, 65, 0.4);
+  box-shadow: 0 0 20px rgba(0, 255, 65, 0.1);
+}
+
+/* ============================================
+   Typewriter animation for hero text
+   ============================================ */
+.typewriter {
+  overflow: hidden;
+  animation: typewriter 3s steps(44) 0.5s 1 normal both;
+}
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+/* ============================================
+   Gradient text for special headings
+   ============================================ */
+.gradient-text {
+  background: linear-gradient(90deg, #00ff41 0%, #00ff41 50%, #ffd700 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================================
+   Neon border animation
+   ============================================ */
+.neon-border {
+  animation: neonPulse 3s ease-in-out infinite;
+}
+@keyframes neonPulse {
+  0%, 100% { box-shadow: 0 0 5px rgba(0, 255, 65, 0.1), inset 0 0 5px rgba(0, 255, 65, 0.05); }
+  50% { box-shadow: 0 0 15px rgba(0, 255, 65, 0.15), inset 0 0 10px rgba(0, 255, 65, 0.05); }
+}
+
+/* ============================================
+   Slide-up stagger animation
+   ============================================ */
+.stagger-1 { animation: fadeInUp 0.4s ease-out 0.05s both; }
+.stagger-2 { animation: fadeInUp 0.4s ease-out 0.1s both; }
+.stagger-3 { animation: fadeInUp 0.4s ease-out 0.15s both; }
+.stagger-4 { animation: fadeInUp 0.4s ease-out 0.2s both; }
+.stagger-5 { animation: fadeInUp 0.4s ease-out 0.25s both; }
+
+/* ============================================
+   Security level danger stripe
+   ============================================ */
+.danger-stripe {
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 10px,
+    rgba(255, 68, 68, 0.05) 10px,
+    rgba(255, 68, 68, 0.05) 20px
+  );
+}
+
+/* ============================================
+   Data stream animation
+   ============================================ */
+.data-stream {
+  position: relative;
+}
+.data-stream::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, transparent, #00ff41, transparent);
+  animation: dataFlow 2s linear infinite;
+  opacity: 0.5;
+}
+@keyframes dataFlow {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+/* ============================================
+   Improved progress bar styling
+   ============================================ */
+.progress-cyber [data-state="indicator"] {
+  background: linear-gradient(90deg, #00ff41, #00cc33);
+  box-shadow: 0 0 8px rgba(0, 255, 65, 0.3);
+}
+
+/* ============================================
+   Hover card lift effect
+   ============================================ */
+.card-lift {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+}
+.card-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 255, 65, 0.08);
+}
+
+/* ============================================
+   1. Enhanced Card Hover Glow (dramatic)
+   ============================================ */
+.card-hover-glow {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(26, 26, 46, 0.6);
+}
+.card-hover-glow:hover {
+  border-color: rgba(0, 255, 65, 0.5);
+  box-shadow:
+    0 0 10px rgba(0, 255, 65, 0.15),
+    0 0 30px rgba(0, 255, 65, 0.08),
+    0 0 60px rgba(0, 255, 65, 0.04),
+    inset 0 0 20px rgba(0, 255, 65, 0.03);
+  transform: translateY(-3px);
+  background-color: rgba(0, 255, 65, 0.02);
+}
+
+/* ============================================
+   2. Hexagonal Badge Styling
+   ============================================ */
+.hex-badge {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 46px;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  font-family: var(--font-geist-mono), monospace;
+  font-weight: 700;
+  font-size: 0.75rem;
+  color: #0a0a0f;
+  text-transform: uppercase;
+}
+.hex-badge.hex-l1 { background: #00ff41; }
+.hex-badge.hex-l2 { background: #ff6b35; }
+.hex-badge.hex-l3 { background: #ffd700; }
+.hex-badge.hex-l4 { background: #ff4444; }
+.hex-badge.hex-l5 { background: #a855f7; }
+
+/* ============================================
+   3. Radar Pulse Animation
+   ============================================ */
+.radar-pulse {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(0, 255, 65, 0.08);
+  border: 1px solid rgba(0, 255, 65, 0.2);
+}
+.radar-pulse::before,
+.radar-pulse::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 255, 65, 0.3);
+}
+.radar-pulse::before {
+  animation: radarExpand 2.5s ease-out infinite;
+}
+.radar-pulse::after {
+  animation: radarExpand 2.5s ease-out 1.25s infinite;
+}
+@keyframes radarExpand {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+/* ============================================
+   4. Matrix Text Decode Animation
+   ============================================ */
+.matrix-decode {
+  font-family: var(--font-geist-mono), monospace;
+  position: relative;
+  overflow: hidden;
+}
+.matrix-decode::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #0a0a0f 0%, transparent 10%, transparent 90%, #0a0a0f 100%);
+  animation: matrixReveal 2s steps(30) forwards;
+  pointer-events: none;
+}
+@keyframes matrixReveal {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* ============================================
+   5. Cyber Border Animation
+   ============================================ */
+.cyber-border {
+  position: relative;
+  border: 2px dashed rgba(0, 255, 65, 0.3);
+  border-radius: 0.5rem;
+  background-clip: padding-box;
+}
+.cyber-border::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 0.5rem;
+  padding: 2px;
+  background: linear-gradient(90deg, #00ff41, transparent, #00ff41, transparent);
+  background-size: 300% 100%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: cyberBorderMove 4s linear infinite;
+  pointer-events: none;
+}
+@keyframes cyberBorderMove {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 300% 0%; }
+}
+
+/* ============================================
+   6. Status Bar Fill (animated gradient)
+   ============================================ */
+.status-bar-fill {
+  height: 6px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #00ff41, #00cc33, #00ff41);
+  background-size: 200% 100%;
+  animation: statusBarShine 2s ease-in-out infinite;
+  box-shadow: 0 0 8px rgba(0, 255, 65, 0.3);
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.status-bar-fill.bar-orange {
+  background: linear-gradient(90deg, #ff6b35, #ff8c5a, #ff6b35);
+  background-size: 200% 100%;
+  box-shadow: 0 0 8px rgba(255, 107, 53, 0.3);
+}
+.status-bar-fill.bar-gold {
+  background: linear-gradient(90deg, #ffd700, #ffe44d, #ffd700);
+  background-size: 200% 100%;
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
+}
+.status-bar-fill.bar-red {
+  background: linear-gradient(90deg, #ff4444, #ff6666, #ff4444);
+  background-size: 200% 100%;
+  box-shadow: 0 0 8px rgba(255, 68, 68, 0.3);
+}
+.status-bar-fill.bar-purple {
+  background: linear-gradient(90deg, #a855f7, #c084fc, #a855f7);
+  background-size: 200% 100%;
+  box-shadow: 0 0 8px rgba(168, 85, 247, 0.3);
+}
+@keyframes statusBarShine {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 0%; }
+  100% { background-position: 0% 0%; }
+}
+
+/* ============================================
+   7. Terminal Cursor (enhanced blinking)
+   ============================================ */
+.terminal-cursor {
+  display: inline-block;
+  position: relative;
+  width: 10px;
+  height: 1.2em;
+  background: #00ff41;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  animation: terminalBlink 1s step-end infinite;
+  box-shadow: 0 0 6px rgba(0, 255, 65, 0.5), 0 0 12px rgba(0, 255, 65, 0.2);
+}
+.terminal-cursor::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: rgba(0, 255, 65, 0.15);
+  animation: terminalBlink 1s step-end infinite;
+}
+@keyframes terminalBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ============================================
+   8. Toast Notification (cyberpunk style)
+   ============================================ */
+.toast-cyber {
+  position: relative;
+  background: linear-gradient(135deg, #161625 0%, #1a1a2e 100%);
+  border: 1px solid rgba(0, 255, 65, 0.3);
+  border-left: 3px solid #00ff41;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  color: #c8e6c9;
+  font-size: 0.875rem;
+  box-shadow:
+    0 0 15px rgba(0, 255, 65, 0.1),
+    0 4px 12px rgba(0, 0, 0, 0.4);
+  animation: toastSlideIn 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.toast-cyber.toast-warning {
+  border-left-color: #ff6b35;
+  border-color: rgba(255, 107, 53, 0.3);
+  box-shadow: 0 0 15px rgba(255, 107, 53, 0.1), 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+.toast-cyber.toast-error {
+  border-left-color: #ff4444;
+  border-color: rgba(255, 68, 68, 0.3);
+  box-shadow: 0 0 15px rgba(255, 68, 68, 0.1), 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+.toast-cyber.toast-gold {
+  border-left-color: #ffd700;
+  border-color: rgba(255, 215, 0, 0.3);
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.1), 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+@keyframes toastSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+/* ============================================
+   9. Search Modal Backdrop
+   ============================================ */
+.search-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: rgba(0, 255, 65, 0.04);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: backdropFadeIn 0.25s ease-out;
+}
+.search-backdrop::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at center, rgba(0, 255, 65, 0.03) 0%, transparent 70%);
+  pointer-events: none;
+}
+@keyframes backdropFadeIn {
+  from { opacity: 0; backdrop-filter: blur(0); }
+  to { opacity: 1; backdrop-filter: blur(8px); }
+}
+
+/* ============================================
+   10. Custom Cyberpunk Scrollbar
+   ============================================ */
+.scrollbar-cyber {
+  scrollbar-width: thin;
+  scrollbar-color: #1a1a2e #0a0a0f;
+}
+.scrollbar-cyber::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+.scrollbar-cyber::-webkit-scrollbar-track {
+  background: #0a0a0f;
+  border-left: 1px solid rgba(0, 255, 65, 0.05);
+}
+.scrollbar-cyber::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #1a1a2e 0%, rgba(0, 255, 65, 0.2) 50%, #1a1a2e 100%);
+  border-radius: 3px;
+}
+.scrollbar-cyber::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(0, 255, 65, 0.4) 0%, #00ff41 50%, rgba(0, 255, 65, 0.4) 100%);
+  box-shadow: 0 0 4px rgba(0, 255, 65, 0.3);
+}
+.scrollbar-cyber::-webkit-scrollbar-corner {
+  background: #0a0a0f;
+}
+
+/* ============================================
+   11. Section Divider (pulsing gradient)
+   ============================================ */
+.section-divider {
+  position: relative;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.3), transparent);
+  margin: 1.5rem 0;
+  overflow: visible;
+}
+.section-divider::after {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 80px;
+  height: 3px;
+  background: #00ff41;
+  box-shadow: 0 0 8px rgba(0, 255, 65, 0.4);
+  border-radius: 2px;
+  animation: dividerPulse 3s ease-in-out infinite;
+}
+@keyframes dividerPulse {
+  0% { left: -80px; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { left: calc(100% + 80px); opacity: 0; }
+}
+
+/* ============================================
+   12. Floating Particles Background
+   ============================================ */
+.particle-bg {
+  position: relative;
+  overflow: hidden;
+}
+.particle-bg::before,
+.particle-bg::after {
+  content: '';
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: rgba(0, 255, 65, 0.25);
+  pointer-events: none;
+  animation: particleFloat 8s ease-in-out infinite;
+}
+.particle-bg::before {
+  top: 20%;
+  left: 15%;
+  animation-delay: 0s;
+  animation-duration: 7s;
+}
+.particle-bg::after {
+  top: 60%;
+  right: 20%;
+  animation-delay: 2s;
+  animation-duration: 9s;
+  background: rgba(0, 255, 65, 0.15);
+  width: 2px;
+  height: 2px;
+}
+@keyframes particleFloat {
+  0%, 100% {
+    transform: translate(0, 0);
+    opacity: 0.3;
+  }
+  25% {
+    transform: translate(10px, -20px);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate(-5px, -40px);
+    opacity: 0.3;
+  }
+  75% {
+    transform: translate(15px, -20px);
+    opacity: 0.5;
+  }
+}
+
+/* ============================================
+   13. Shield Spin Animation
+   ============================================ */
+.shield-spin {
+  display: inline-block;
+  animation: shieldSpin 8s ease-in-out infinite;
+}
+.shield-spin:hover {
+  animation-duration: 1.5s;
+}
+@keyframes shieldSpin {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  25% { transform: rotate(3deg) scale(1.02); }
+  50% { transform: rotate(0deg) scale(1); }
+  75% { transform: rotate(-3deg) scale(1.02); }
+}
+
+/* ============================================
+   14. Enhanced Dialog Overlay (grid pattern)
+   ============================================ */
+.dialog-cyber-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background:
+    linear-gradient(rgba(0, 255, 65, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 65, 0.02) 1px, transparent 1px),
+    rgba(10, 10, 15, 0.85);
+  background-size: 30px 30px, 30px 30px, 100% 100%;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  animation: dialogOverlayIn 0.3s ease-out;
+}
+@keyframes dialogOverlayIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ============================================
+   15. Badge Glow Variants
+   ============================================ */
+.badge-glow-green {
+  color: #00ff41;
+  background: rgba(0, 255, 65, 0.1);
+  border: 1px solid rgba(0, 255, 65, 0.3);
+  box-shadow: 0 0 8px rgba(0, 255, 65, 0.15);
+  text-shadow: 0 0 6px rgba(0, 255, 65, 0.3);
+}
+.badge-glow-orange {
+  color: #ff6b35;
+  background: rgba(255, 107, 53, 0.1);
+  border: 1px solid rgba(255, 107, 53, 0.3);
+  box-shadow: 0 0 8px rgba(255, 107, 53, 0.15);
+  text-shadow: 0 0 6px rgba(255, 107, 53, 0.3);
+}
+.badge-glow-gold {
+  color: #ffd700;
+  background: rgba(255, 215, 0, 0.1);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.15);
+  text-shadow: 0 0 6px rgba(255, 215, 0, 0.3);
+}
+.badge-glow-red {
+  color: #ff4444;
+  background: rgba(255, 68, 68, 0.1);
+  border: 1px solid rgba(255, 68, 68, 0.3);
+  box-shadow: 0 0 8px rgba(255, 68, 68, 0.15);
+  text-shadow: 0 0 6px rgba(255, 68, 68, 0.3);
+}
+.badge-glow-purple {
+  color: #a855f7;
+  background: rgba(168, 85, 247, 0.1);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  box-shadow: 0 0 8px rgba(168, 85, 247, 0.15);
+  text-shadow: 0 0 6px rgba(168, 85, 247, 0.3);
+}
+
+/* ============================================
+   16. Typing Indicator (bouncing dots)
+   ============================================ */
+.typing-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 0;
+}
+.typing-indicator::before,
+.typing-indicator::after,
+.typing-indicator span {
+  content: '';
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00ff41;
+  opacity: 0.6;
+}
+.typing-indicator span {
+  animation: typingBounce 1.4s ease-in-out infinite;
+  animation-delay: 0s;
+}
+.typing-indicator::before {
+  animation: typingBounce 1.4s ease-in-out infinite;
+  animation-delay: 0.2s;
+}
+.typing-indicator::after {
+  animation: typingBounce 1.4s ease-in-out infinite;
+  animation-delay: 0.4s;
+}
+@keyframes typingBounce {
+  0%, 60%, 100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  30% {
+    transform: translateY(-6px);
+    opacity: 1;
+  }
+}
+
+/* ============================================
+   17. Scan Line Effect (enhanced)
+   ============================================ */
+.scan-line {
+  position: relative;
+  overflow: hidden;
+}
+.scan-line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.4), rgba(0, 255, 65, 0.6), rgba(0, 255, 65, 0.4), transparent);
+  box-shadow: 0 0 8px rgba(0, 255, 65, 0.3), 0 0 20px rgba(0, 255, 65, 0.1);
+  animation: scanLineMove 4s linear infinite;
+  pointer-events: none;
+  z-index: 10;
+}
+@keyframes scanLineMove {
+  0% { top: -2px; }
+  100% { top: 100%; }
+}
+
+/* ============================================
+   18. Button Press Effect
+   ============================================ */
+.btn-press {
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center;
+}
+.btn-press:active {
+  transform: scale(0.95);
+  filter: brightness(1.3);
+}
+.btn-press:active.btn-press-green {
+  box-shadow: 0 0 12px rgba(0, 255, 65, 0.5);
+  background-color: rgba(0, 255, 65, 0.15) !important;
+}
+.btn-press:active.btn-press-red {
+  box-shadow: 0 0 12px rgba(255, 68, 68, 0.5);
+  background-color: rgba(255, 68, 68, 0.15) !important;
+}
+
+/* ============================================
+   19. Fade In From Left
+   ============================================ */
+.fade-in-left {
+  animation: fadeInLeft 0.5s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ============================================
+   20. Fade In From Right
+   ============================================ */
+.fade-in-right {
+  animation: fadeInRight 0.5s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ============================================
+   21. Shake Animation (error/warning)
+   ============================================ */
+.shake {
+  animation: shakeAnim 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+@keyframes shakeAnim {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+  20%, 40%, 60%, 80% { transform: translateX(4px); }
+}
+
+/* ============================================
+   22. Success Check Animation
+   ============================================ */
+.success-check {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(0, 255, 65, 0.1);
+  border: 2px solid #00ff41;
+  position: relative;
+  animation: checkAppear 0.4s ease-out;
+}
+.success-check::after {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 9px;
+  width: 6px;
+  height: 11px;
+  border: solid #00ff41;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  animation: checkDraw 0.3s ease-out 0.2s both;
+}
+@keyframes checkAppear {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+@keyframes checkDraw {
+  from {
+    height: 0;
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    height: 11px;
+    width: 6px;
+    opacity: 1;
+  }
+}
+
+/* ============================================
+   23. Hero Gradient Background
+   ============================================ */
+.hero-gradient {
+  background: radial-gradient(
+    ellipse at 50% 0%,
+    rgba(0, 255, 65, 0.08) 0%,
+    rgba(0, 255, 65, 0.03) 30%,
+    transparent 70%
+  );
+}
+
+/* ============================================
+   24. Tab Active Bar Indicator (Enhanced)
+   ============================================ */
+.tab-active-bar {
+  position: relative;
+  padding-bottom: 0.5rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  transition: color 0.25s ease, background-color 0.25s ease, transform 0.2s ease;
+  border-radius: 0.375rem 0.375rem 0 0;
+}
+.tab-active-bar::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #00ff41, rgba(0, 255, 65, 0.4));
+  border-radius: 2px;
+  transform: scaleX(0);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+}
+.tab-active-bar[data-state="active"]::after,
+.tab-active-bar[aria-selected="true"]::after,
+.tab-active-bar.active::after {
+  transform: scaleX(1);
+  box-shadow: 0 0 10px rgba(0, 255, 65, 0.4), 0 0 4px rgba(0, 255, 65, 0.6);
+}
+.tab-active-bar[data-state="active"],
+.tab-active-bar[aria-selected="true"],
+.tab-active-bar.active {
+  color: #00ff41;
+  background: rgba(0, 255, 65, 0.06);
+  text-shadow: 0 0 8px rgba(0, 255, 65, 0.3);
+}
+/* Inactive tab hover */
+.tab-active-bar:not([data-state="active"]):not([aria-selected="true"]):not(.active):hover {
+  color: rgba(0, 255, 65, 0.8);
+  background: rgba(0, 255, 65, 0.03);
+  transform: translateY(-1px);
+}
+.tab-active-bar:not([data-state="active"]):not([aria-selected="true"]):not(.active):hover::after {
+  transform: scaleX(0.5);
+  box-shadow: 0 0 4px rgba(0, 255, 65, 0.2);
+}
+
+/* ============================================
+   25. Compact Stats Grid
+   ============================================ */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0.75rem;
+}
+.stats-grid > * {
+  background: #161625;
+  border: 1px solid rgba(26, 26, 46, 0.6);
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  transition: all 0.3s ease;
+}
+.stats-grid > *:hover {
+  border-color: rgba(0, 255, 65, 0.2);
+  box-shadow: 0 0 10px rgba(0, 255, 65, 0.05);
+}
+
+/* ============================================
+   26. Alert Banner (pulsing border + gradient)
+   ============================================ */
+.alert-banner {
+  position: relative;
+  background: linear-gradient(135deg, rgba(255, 68, 68, 0.08) 0%, rgba(255, 107, 53, 0.05) 100%);
+  border: 1px solid rgba(255, 68, 68, 0.3);
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  color: #c8e6c9;
+  animation: alertPulse 3s ease-in-out infinite;
+}
+.alert-banner.alert-warning {
+  background: linear-gradient(135deg, rgba(255, 107, 53, 0.08) 0%, rgba(255, 215, 0, 0.05) 100%);
+  border-color: rgba(255, 107, 53, 0.3);
+}
+.alert-banner.alert-info {
+  background: linear-gradient(135deg, rgba(0, 255, 65, 0.08) 0%, rgba(168, 85, 247, 0.05) 100%);
+  border-color: rgba(0, 255, 65, 0.3);
+}
+@keyframes alertPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(255, 68, 68, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 12px 2px rgba(255, 68, 68, 0.1);
+  }
+}
+
+/* ============================================
+   27. Tooltip Cyber Style
+   ============================================ */
+.tooltip-cyber {
+  position: relative;
+}
+.tooltip-cyber::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) scale(0.9);
+  background: #161625;
+  border: 1px solid rgba(0, 255, 65, 0.3);
+  color: #c8e6c9;
+  font-size: 0.75rem;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.375rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 10px rgba(0, 255, 65, 0.1), 0 4px 8px rgba(0, 0, 0, 0.3);
+  z-index: 50;
+}
+.tooltip-cyber::after {
+  content: '';
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  border: 4px solid transparent;
+  border-top-color: rgba(0, 255, 65, 0.3);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 50;
+}
+.tooltip-cyber:hover::before {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+.tooltip-cyber:hover::after {
+  opacity: 1;
+}
+
+/* ============================================
+   28. Enhanced Mobile Navigation
+   ============================================ */
+.mobile-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: rgba(10, 10, 15, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(0, 255, 65, 0.1);
+  padding: 0.5rem 0;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.4);
+}
+@media (min-width: 768px) {
+  .mobile-nav {
+    display: none;
+  }
+}
+.mobile-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.375rem;
+  color: #7a9a7b;
+  font-size: 0.625rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  position: relative;
+}
+.mobile-nav-item:hover,
+.mobile-nav-item.active {
+  color: #00ff41;
+}
+.mobile-nav-item.active::after {
+  content: '';
+  position: absolute;
+  top: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 2px;
+  background: #00ff41;
+  border-radius: 1px;
+  box-shadow: 0 0 6px rgba(0, 255, 65, 0.4);
+}
+.mobile-nav-item svg,
+.mobile-nav-item [data-icon] {
+  width: 20px;
+  height: 20px;
+}
+
+/* ================================================================
+   ██████╗ ██╗██╗  ██╗███████╗██╗      ██████╗  ██████╗  ██████╗██╗  ██╗███████╗████████╗
+   ██╔══██╗██║╚██╗██╔╝██╔════╝██║      ██╔══██╗██╔═══██╗██╔════╝██║ ██╔╝██╔════╝╚══██╔══╝
+   ██████╔╝██║ ╚███╔╝ █████╗  ██║      ██████╔╝██║   ██║██║     █████╔╝ █████╗     ██║   
+   ██╔═══╝ ██║ ██╔██╗ ██╔══╝  ██║      ██╔══██╗██║   ██║██║     ██╔═██╗ ██╔══╝     ██║   
+   ██║     ██║██╔╝ ██╗███████╗███████╗  ██║  ██║╚██████╔╝╚██████╗██║  ╚██╗███████╗   ██║   
+   ╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝╚══════╝  ╚═╝  ╚═╝ ╚═════╝ ╚═════╝╚═╝   ╚═╝╚══════╝   ╚═╝   
+   
+   ENHANCED CSS — Task 2: Frontend Styling Expert
+   ================================================================ */
+
+/* ============================================
+   NEON GLOW EFFECTS — Multi-color neon system
+   ============================================ */
+.neon-text-green {
+  color: #00ff41;
+  text-shadow:
+    0 0 7px rgba(0, 255, 65, 0.6),
+    0 0 20px rgba(0, 255, 65, 0.4),
+    0 0 42px rgba(0, 255, 65, 0.2),
+    0 0 82px rgba(0, 255, 65, 0.1);
+}
+
+.neon-text-red {
+  color: #ff4444;
+  text-shadow:
+    0 0 7px rgba(255, 68, 68, 0.6),
+    0 0 20px rgba(255, 68, 68, 0.4),
+    0 0 42px rgba(255, 68, 68, 0.2),
+    0 0 82px rgba(255, 68, 68, 0.1);
+}
+
+.neon-text-gold {
+  color: #ffd700;
+  text-shadow:
+    0 0 7px rgba(255, 215, 0, 0.6),
+    0 0 20px rgba(255, 215, 0, 0.4),
+    0 0 42px rgba(255, 215, 0, 0.2),
+    0 0 82px rgba(255, 215, 0, 0.1);
+}
+
+.neon-text-purple {
+  color: #a855f7;
+  text-shadow:
+    0 0 7px rgba(168, 85, 247, 0.6),
+    0 0 20px rgba(168, 85, 247, 0.4),
+    0 0 42px rgba(168, 85, 247, 0.2),
+    0 0 82px rgba(168, 85, 247, 0.1);
+}
+
+/* Neon border glow for cards — animated pulsing */
+.neon-border {
+  border: 1px solid rgba(0, 255, 65, 0.4);
+  box-shadow:
+    0 0 8px rgba(0, 255, 65, 0.15),
+    inset 0 0 8px rgba(0, 255, 65, 0.05);
+  animation: neonBorderPulse 3s ease-in-out infinite;
+  will-change: box-shadow;
+}
+@keyframes neonBorderPulse {
+  0%, 100% {
+    box-shadow:
+      0 0 8px rgba(0, 255, 65, 0.15),
+      inset 0 0 8px rgba(0, 255, 65, 0.05);
+  }
+  50% {
+    box-shadow:
+      0 0 18px rgba(0, 255, 65, 0.3),
+      0 0 40px rgba(0, 255, 65, 0.1),
+      inset 0 0 15px rgba(0, 255, 65, 0.08);
+  }
+}
+
+/* Full neon box glow — intense multi-layered */
+.neon-box {
+  border: 1px solid rgba(0, 255, 65, 0.5);
+  box-shadow:
+    0 0 5px rgba(0, 255, 65, 0.2),
+    0 0 15px rgba(0, 255, 65, 0.15),
+    0 0 30px rgba(0, 255, 65, 0.08),
+    0 0 60px rgba(0, 255, 65, 0.04),
+    inset 0 0 15px rgba(0, 255, 65, 0.05);
+  animation: neonBoxPulse 4s ease-in-out infinite;
+  will-change: box-shadow;
+}
+@keyframes neonBoxPulse {
+  0%, 100% {
+    box-shadow:
+      0 0 5px rgba(0, 255, 65, 0.2),
+      0 0 15px rgba(0, 255, 65, 0.15),
+      0 0 30px rgba(0, 255, 65, 0.08),
+      0 0 60px rgba(0, 255, 65, 0.04),
+      inset 0 0 15px rgba(0, 255, 65, 0.05);
+  }
+  50% {
+    box-shadow:
+      0 0 10px rgba(0, 255, 65, 0.35),
+      0 0 25px rgba(0, 255, 65, 0.25),
+      0 0 50px rgba(0, 255, 65, 0.15),
+      0 0 100px rgba(0, 255, 65, 0.06),
+      inset 0 0 25px rgba(0, 255, 65, 0.08);
+  }
+}
+
+/* ============================================
+   ENHANCED CARD STYLES
+   ============================================ */
+
+/* Card Cyber — dramatic gradient border + inner glow */
+.card-cyber {
+  position: relative;
+  background: linear-gradient(135deg, #161625 0%, #0d0d18 100%);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, box-shadow;
+}
+.card-cyber::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 0.75rem;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 255, 65, 0.5) 0%,
+    rgba(0, 255, 65, 0.1) 30%,
+    transparent 50%,
+    rgba(0, 255, 65, 0.1) 70%,
+    rgba(0, 255, 65, 0.5) 100%
+  );
+  background-size: 200% 200%;
+  animation: cardCyberBorderShift 6s ease infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+.card-cyber::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 0.75rem;
+  background: radial-gradient(
+    ellipse at 50% 0%,
+    rgba(0, 255, 65, 0.06) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  opacity: 0;
+}
+.card-cyber:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 0 15px rgba(0, 255, 65, 0.12),
+    0 0 40px rgba(0, 255, 65, 0.06),
+    0 12px 30px rgba(0, 0, 0, 0.5);
+}
+.card-cyber:hover::after {
+  opacity: 1;
+}
+@keyframes cardCyberBorderShift {
+  0%, 100% { background-position: 0% 0%; }
+  50% { background-position: 100% 100%; }
+}
+
+/* Card Hologram — iridescent rainbow effect */
+.card-hologram {
+  position: relative;
+  background: #161625;
+  border: 1px solid rgba(26, 26, 46, 0.8);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+.card-hologram::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    125deg,
+    rgba(0, 255, 65, 0.06) 0%,
+    rgba(168, 85, 247, 0.06) 25%,
+    rgba(255, 215, 0, 0.06) 50%,
+    rgba(255, 107, 53, 0.06) 75%,
+    rgba(0, 255, 65, 0.06) 100%
+  );
+  background-size: 300% 300%;
+  animation: hologramShift 8s ease infinite;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+.card-hologram::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.03) 45%,
+    rgba(255, 255, 255, 0.06) 50%,
+    rgba(255, 255, 255, 0.03) 55%,
+    transparent 70%
+  );
+  background-size: 200% 100%;
+  animation: hologramShine 6s ease-in-out infinite;
+  pointer-events: none;
+}
+.card-hologram:hover {
+  border-color: rgba(168, 85, 247, 0.3);
+  transform: translateY(-3px) scale(1.005);
+  box-shadow:
+    0 0 20px rgba(168, 85, 247, 0.1),
+    0 0 40px rgba(0, 255, 65, 0.05),
+    0 8px 24px rgba(0, 0, 0, 0.4);
+}
+.card-hologram:hover::before {
+  opacity: 1;
+}
+@keyframes hologramShift {
+  0%, 100% { background-position: 0% 0%; }
+  50% { background-position: 100% 100%; }
+}
+@keyframes hologramShine {
+  0%, 100% { background-position: -100% 0; }
+  50% { background-position: 200% 0; }
+}
+
+/* Card Terminal — terminal-style card with scan line */
+.card-terminal {
+  position: relative;
+  background: #0d0d18;
+  border: 1px solid rgba(0, 255, 65, 0.15);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  font-family: var(--font-geist-mono), monospace;
+}
+.card-terminal::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 28px;
+  background: linear-gradient(180deg, rgba(0, 255, 65, 0.04) 0%, transparent 100%);
+  border-bottom: 1px solid rgba(0, 255, 65, 0.08);
+  pointer-events: none;
+}
+.card-terminal::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 255, 65, 0.3),
+    rgba(0, 255, 65, 0.5),
+    rgba(0, 255, 65, 0.3),
+    transparent
+  );
+  animation: terminalScanLine 5s linear infinite;
+  pointer-events: none;
+  z-index: 5;
+}
+@keyframes terminalScanLine {
+  0% { top: 0; opacity: 1; }
+  100% { top: 100%; opacity: 0.3; }
+}
+
+/* Improve existing .card-glow with stronger neon effect */
+.card-glow {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, box-shadow;
+}
+.card-glow:hover {
+  border-color: rgba(0, 255, 65, 0.5);
+  box-shadow:
+    0 0 12px rgba(0, 255, 65, 0.15),
+    0 0 35px rgba(0, 255, 65, 0.08),
+    0 0 70px rgba(0, 255, 65, 0.04),
+    inset 0 0 25px rgba(0, 255, 65, 0.03),
+    0 8px 25px rgba(0, 0, 0, 0.4);
+  transform: translateY(-3px);
+  background-color: rgba(0, 255, 65, 0.015);
+}
+
+/* Improve existing .card-accent with animated accent line */
+.card-accent::before {
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #00ff41, rgba(0, 255, 65, 0.3));
+  box-shadow: 0 0 8px rgba(0, 255, 65, 0.4);
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+}
+.card-accent:hover::before {
+  width: 100%;
+  opacity: 1;
+}
+.card-accent:hover {
+  border-color: rgba(0, 255, 65, 0.3);
+  box-shadow:
+    0 0 20px rgba(0, 255, 65, 0.1),
+    inset 0 0 15px rgba(0, 255, 65, 0.03);
+}
+
+/* ============================================
+   BETTER HOVER EFFECTS
+   ============================================ */
+
+/* Hover Lift — lift + glow on hover */
+.hover-lift {
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, box-shadow;
+}
+.hover-lift:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 0 15px rgba(0, 255, 65, 0.15),
+    0 0 35px rgba(0, 255, 65, 0.06),
+    0 16px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* Hover Neon — neon outline appears on hover */
+.hover-neon {
+  position: relative;
+  border: 1px solid transparent;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: border-color, box-shadow;
+}
+.hover-neon::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  border: 1px solid transparent;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+.hover-neon:hover {
+  border-color: rgba(0, 255, 65, 0.5);
+  box-shadow:
+    0 0 10px rgba(0, 255, 65, 0.2),
+    0 0 25px rgba(0, 255, 65, 0.1),
+    inset 0 0 12px rgba(0, 255, 65, 0.04);
+}
+.hover-neon:hover::after {
+  border-color: rgba(0, 255, 65, 0.2);
+  box-shadow: 0 0 15px rgba(0, 255, 65, 0.08);
+}
+
+/* Hover Slide — slide accent from left on hover */
+.hover-slide {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.35s ease;
+}
+.hover-slide::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #00ff41, rgba(0, 255, 65, 0.2));
+  box-shadow: 0 0 8px rgba(0, 255, 65, 0.4);
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 2;
+}
+.hover-slide:hover::before {
+  width: 100%;
+}
+.hover-slide:hover {
+  border-color: rgba(0, 255, 65, 0.25);
+  box-shadow: 0 0 12px rgba(0, 255, 65, 0.06);
+}
+
+/* Button Cyber — scan line + glitch effect */
+.btn-cyber {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.625rem 1.5rem;
+  background: rgba(0, 255, 65, 0.08);
+  border: 1px solid rgba(0, 255, 65, 0.4);
+  color: #00ff41;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, box-shadow;
+}
+.btn-cyber::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 255, 65, 0.08),
+    rgba(0, 255, 65, 0.15),
+    rgba(0, 255, 65, 0.08),
+    transparent
+  );
+  transition: left 0.5s ease;
+  pointer-events: none;
+}
+.btn-cyber::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 255, 65, 0.5),
+    transparent
+  );
+  animation: btnCyberScan 3s linear infinite;
+  pointer-events: none;
+}
+.btn-cyber:hover {
+  background: rgba(0, 255, 65, 0.12);
+  border-color: rgba(0, 255, 65, 0.7);
+  box-shadow:
+    0 0 15px rgba(0, 255, 65, 0.2),
+    0 0 30px rgba(0, 255, 65, 0.1),
+    inset 0 0 15px rgba(0, 255, 65, 0.05);
+  transform: translateY(-1px);
+  text-shadow: 0 0 8px rgba(0, 255, 65, 0.5);
+}
+.btn-cyber:hover::before {
+  left: 100%;
+}
+.btn-cyber:active {
+  transform: translateY(0) scale(0.97);
+  box-shadow:
+    0 0 20px rgba(0, 255, 65, 0.3),
+    inset 0 0 20px rgba(0, 255, 65, 0.08);
+}
+@keyframes btnCyberScan {
+  0% { top: 0; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+/* Button Neon — neon glow button */
+.btn-neon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.625rem 1.5rem;
+  background: transparent;
+  border: 1px solid rgba(0, 255, 65, 0.5);
+  color: #00ff41;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow:
+    0 0 5px rgba(0, 255, 65, 0.15),
+    inset 0 0 5px rgba(0, 255, 65, 0.05);
+  will-change: transform, box-shadow, background-color;
+}
+.btn-neon:hover {
+  background: rgba(0, 255, 65, 0.1);
+  border-color: #00ff41;
+  box-shadow:
+    0 0 10px rgba(0, 255, 65, 0.3),
+    0 0 25px rgba(0, 255, 65, 0.15),
+    0 0 50px rgba(0, 255, 65, 0.08),
+    inset 0 0 10px rgba(0, 255, 65, 0.08);
+  text-shadow: 0 0 8px rgba(0, 255, 65, 0.5);
+  transform: translateY(-1px);
+}
+.btn-neon:active {
+  transform: translateY(1px);
+  box-shadow:
+    0 0 5px rgba(0, 255, 65, 0.4),
+    inset 0 0 10px rgba(0, 255, 65, 0.1);
+}
+/* Neon button color variants */
+.btn-neon.btn-neon-red {
+  border-color: rgba(255, 68, 68, 0.5);
+  color: #ff4444;
+  box-shadow: 0 0 5px rgba(255, 68, 68, 0.15), inset 0 0 5px rgba(255, 68, 68, 0.05);
+}
+.btn-neon.btn-neon-red:hover {
+  background: rgba(255, 68, 68, 0.1);
+  border-color: #ff4444;
+  box-shadow: 0 0 10px rgba(255, 68, 68, 0.3), 0 0 25px rgba(255, 68, 68, 0.15), inset 0 0 10px rgba(255, 68, 68, 0.08);
+  text-shadow: 0 0 8px rgba(255, 68, 68, 0.5);
+}
+.btn-neon.btn-neon-gold {
+  border-color: rgba(255, 215, 0, 0.5);
+  color: #ffd700;
+  box-shadow: 0 0 5px rgba(255, 215, 0, 0.15), inset 0 0 5px rgba(255, 215, 0, 0.05);
+}
+.btn-neon.btn-neon-gold:hover {
+  background: rgba(255, 215, 0, 0.1);
+  border-color: #ffd700;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.3), 0 0 25px rgba(255, 215, 0, 0.15), inset 0 0 10px rgba(255, 215, 0, 0.08);
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+}
+.btn-neon.btn-neon-purple {
+  border-color: rgba(168, 85, 247, 0.5);
+  color: #a855f7;
+  box-shadow: 0 0 5px rgba(168, 85, 247, 0.15), inset 0 0 5px rgba(168, 85, 247, 0.05);
+}
+.btn-neon.btn-neon-purple:hover {
+  background: rgba(168, 85, 247, 0.1);
+  border-color: #a855f7;
+  box-shadow: 0 0 10px rgba(168, 85, 247, 0.3), 0 0 25px rgba(168, 85, 247, 0.15), inset 0 0 10px rgba(168, 85, 247, 0.08);
+  text-shadow: 0 0 8px rgba(168, 85, 247, 0.5);
+}
+
+/* ============================================
+   BACKGROUND PATTERNS — Circuit, Hex Grid, Enhanced Matrix
+   ============================================ */
+
+/* Enhanced Matrix Digital Rain (CSS-only with column effect) */
+.matrix-bg {
+  position: relative;
+  overflow: hidden;
+}
+.matrix-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 255, 65, 0.015) 2px,
+      rgba(0, 255, 65, 0.015) 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      transparent 18px,
+      rgba(0, 255, 65, 0.02) 18px,
+      rgba(0, 255, 65, 0.02) 20px
+    );
+  animation: matrixColumns 20s linear infinite;
+  pointer-events: none;
+  opacity: 0.6;
+}
+.matrix-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(0, 255, 65, 0.02) 30%,
+    rgba(0, 255, 65, 0.04) 50%,
+    rgba(0, 255, 65, 0.02) 70%,
+    transparent 100%
+  );
+  animation: matrixFallEnhanced 6s linear infinite;
+  pointer-events: none;
+}
+@keyframes matrixColumns {
+  0% { background-position: 0 0, 0 0; }
+  100% { background-position: 0 40px, 0 0; }
+}
+@keyframes matrixFallEnhanced {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+/* Circuit Board Pattern Background */
+.circuit-bg {
+  position: relative;
+  overflow: hidden;
+  background-color: #0a0a0f;
+  background-image:
+    /* Horizontal traces */
+    linear-gradient(rgba(0, 255, 65, 0.04) 1px, transparent 1px),
+    /* Vertical traces */
+    linear-gradient(90deg, rgba(0, 255, 65, 0.04) 1px, transparent 1px),
+    /* Node dots at intersections */
+    radial-gradient(circle, rgba(0, 255, 65, 0.08) 1px, transparent 1px);
+  background-size:
+    60px 60px,
+    60px 60px,
+    60px 60px;
+  background-position:
+    0 0,
+    0 0,
+    30px 30px;
+}
+.circuit-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    /* Diagonal traces */
+    linear-gradient(45deg, transparent 48%, rgba(0, 255, 65, 0.025) 49%, rgba(0, 255, 65, 0.025) 51%, transparent 52%),
+    linear-gradient(-45deg, transparent 48%, rgba(0, 255, 65, 0.025) 49%, rgba(0, 255, 65, 0.025) 51%, transparent 52%);
+  background-size: 120px 120px;
+  animation: circuitPulse 8s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes circuitPulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.7; }
+}
+
+/* Hexagonal Grid Pattern */
+.hex-grid-bg {
+  position: relative;
+  overflow: hidden;
+  background-color: #0a0a0f;
+  background-image:
+    /* Hex grid using overlapping triangles */
+    linear-gradient(30deg, rgba(0, 255, 65, 0.03) 12%, transparent 12.5%, transparent 87%, rgba(0, 255, 65, 0.03) 87.5%),
+    linear-gradient(150deg, rgba(0, 255, 65, 0.03) 12%, transparent 12.5%, transparent 87%, rgba(0, 255, 65, 0.03) 87.5%),
+    linear-gradient(30deg, rgba(0, 255, 65, 0.03) 12%, transparent 12.5%, transparent 87%, rgba(0, 255, 65, 0.03) 87.5%),
+    linear-gradient(150deg, rgba(0, 255, 65, 0.03) 12%, transparent 12.5%, transparent 87%, rgba(0, 255, 65, 0.03) 87.5%),
+    linear-gradient(60deg, rgba(0, 255, 65, 0.025) 25%, transparent 25.5%, transparent 75%, rgba(0, 255, 65, 0.025) 75%),
+    linear-gradient(60deg, rgba(0, 255, 65, 0.025) 25%, transparent 25.5%, transparent 75%, rgba(0, 255, 65, 0.025) 75%);
+  background-size:
+    80px 140px,
+    80px 140px,
+    80px 140px,
+    80px 140px,
+    80px 140px,
+    80px 140px;
+  background-position:
+    0 0,
+    0 0,
+    40px 70px,
+    40px 70px,
+    0 0,
+    40px 70px;
+}
+.hex-grid-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    rgba(0, 255, 65, 0.03) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+/* ============================================
+   ANIMATED ELEMENTS
+   ============================================ */
+
+/* Enhanced Typing Cursor */
+.typing-cursor {
+  display: inline-block;
+  position: relative;
+  color: #00ff41;
+}
+.typing-cursor::after {
+  content: '█';
+  animation: typingCursorBlink 1s step-end infinite;
+  color: #00ff41;
+  text-shadow:
+    0 0 7px rgba(0, 255, 65, 0.6),
+    0 0 15px rgba(0, 255, 65, 0.3);
+}
+@keyframes typingCursorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Horizontal Data Stream Animation */
+.data-stream-line {
+  position: relative;
+  height: 2px;
+  background: rgba(0, 255, 65, 0.05);
+  overflow: hidden;
+}
+.data-stream-line::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -40%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 255, 65, 0.3),
+    #00ff41,
+    rgba(0, 255, 65, 0.3),
+    transparent
+  );
+  box-shadow: 0 0 10px rgba(0, 255, 65, 0.4);
+  animation: dataStreamFlow 3s linear infinite;
+}
+.data-stream-line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -20%;
+  width: 20%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 255, 65, 0.15),
+    rgba(0, 255, 65, 0.3),
+    rgba(0, 255, 65, 0.15),
+    transparent
+  );
+  animation: dataStreamFlow 3s linear infinite 1.5s;
+}
+@keyframes dataStreamFlow {
+  0% { left: -40%; }
+  100% { left: 100%; }
+}
+
+/* Moving Scan Line Overlay */
+.scan-line-moving {
+  position: relative;
+  overflow: hidden;
+}
+.scan-line-moving::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 255, 65, 0.2) 15%,
+    rgba(0, 255, 65, 0.6) 50%,
+    rgba(0, 255, 65, 0.2) 85%,
+    transparent 100%
+  );
+  box-shadow:
+    0 0 10px rgba(0, 255, 65, 0.4),
+    0 0 25px rgba(0, 255, 65, 0.15);
+  animation: scanLineMoving 4s linear infinite;
+  pointer-events: none;
+  z-index: 10;
+}
+.scan-line-moving::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 255, 65, 0.03) 0%,
+    transparent 100%
+  );
+  animation: scanLineMoving 4s linear infinite;
+  pointer-events: none;
+  z-index: 9;
+}
+@keyframes scanLineMoving {
+  0% { top: -3px; }
+  100% { top: 100%; }
+}
+
+/* Rotating Glow Border (for security score ring) */
+.rotate-glow {
+  position: relative;
+  border-radius: 50%;
+}
+.rotate-glow::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0%,
+    rgba(0, 255, 65, 0.4) 10%,
+    rgba(0, 255, 65, 0.8) 25%,
+    rgba(0, 255, 65, 0.4) 40%,
+    transparent 50%
+  );
+  animation: rotateGlowSpin 4s linear infinite;
+  z-index: -1;
+  will-change: transform;
+}
+.rotate-glow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: inherit;
+  z-index: 0;
+}
+@keyframes rotateGlowSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Expanding Pulse Ring Effect */
+.pulse-ring {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.pulse-ring::before,
+.pulse-ring::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid rgba(0, 255, 65, 0.4);
+  animation: pulseRingExpand 2.5s ease-out infinite;
+  pointer-events: none;
+}
+.pulse-ring::after {
+  animation-delay: 1.25s;
+}
+@keyframes pulseRingExpand {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+/* Breathing Border — border that breathes/glows */
+.breathing-border {
+  border: 1px solid rgba(0, 255, 65, 0.2);
+  animation: breathingBorder 4s ease-in-out infinite;
+  will-change: border-color, box-shadow;
+}
+.breathing-border.breathing-red {
+  border-color: rgba(255, 68, 68, 0.2);
+  animation-name: breathingBorderRed;
+}
+.breathing-border.breathing-gold {
+  border-color: rgba(255, 215, 0, 0.2);
+  animation-name: breathingBorderGold;
+}
+.breathing-border.breathing-purple {
+  border-color: rgba(168, 85, 247, 0.2);
+  animation-name: breathingBorderPurple;
+}
+@keyframes breathingBorder {
+  0%, 100% {
+    border-color: rgba(0, 255, 65, 0.15);
+    box-shadow: 0 0 5px rgba(0, 255, 65, 0.05);
+  }
+  50% {
+    border-color: rgba(0, 255, 65, 0.5);
+    box-shadow: 0 0 15px rgba(0, 255, 65, 0.15), 0 0 30px rgba(0, 255, 65, 0.05);
+  }
+}
+@keyframes breathingBorderRed {
+  0%, 100% {
+    border-color: rgba(255, 68, 68, 0.15);
+    box-shadow: 0 0 5px rgba(255, 68, 68, 0.05);
+  }
+  50% {
+    border-color: rgba(255, 68, 68, 0.5);
+    box-shadow: 0 0 15px rgba(255, 68, 68, 0.15), 0 0 30px rgba(255, 68, 68, 0.05);
+  }
+}
+@keyframes breathingBorderGold {
+  0%, 100% {
+    border-color: rgba(255, 215, 0, 0.15);
+    box-shadow: 0 0 5px rgba(255, 215, 0, 0.05);
+  }
+  50% {
+    border-color: rgba(255, 215, 0, 0.5);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.15), 0 0 30px rgba(255, 215, 0, 0.05);
+  }
+}
+@keyframes breathingBorderPurple {
+  0%, 100% {
+    border-color: rgba(168, 85, 247, 0.15);
+    box-shadow: 0 0 5px rgba(168, 85, 247, 0.05);
+  }
+  50% {
+    border-color: rgba(168, 85, 247, 0.5);
+    box-shadow: 0 0 15px rgba(168, 85, 247, 0.15), 0 0 30px rgba(168, 85, 247, 0.05);
+  }
+}
+
+/* ============================================
+   HERO SECTION ENHANCEMENTS
+   ============================================ */
+
+/* Enhanced Hero Gradient — multi-layered depth */
+.hero-gradient {
+  background:
+    radial-gradient(
+      ellipse 80% 50% at 50% 0%,
+      rgba(0, 255, 65, 0.1) 0%,
+      rgba(0, 255, 65, 0.04) 30%,
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 60% 40% at 20% 10%,
+      rgba(168, 85, 247, 0.04) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse 60% 40% at 80% 10%,
+      rgba(255, 107, 53, 0.03) 0%,
+      transparent 50%
+    );
+  position: relative;
+}
+.hero-gradient::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(10, 10, 15, 0.8) 60%,
+    #0a0a0f 100%
+  );
+  pointer-events: none;
+}
+
+/* Terminal Prompt — terminal-style prompt with blinking cursor */
+.terminal-prompt {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-geist-mono), monospace;
+  color: #7a9a7b;
+  font-size: 0.875rem;
+}
+.terminal-prompt::before {
+  content: '>';
+  color: #00ff41;
+  font-weight: 700;
+  margin-right: 0.5rem;
+  text-shadow: 0 0 6px rgba(0, 255, 65, 0.4);
+}
+.terminal-prompt::after {
+  content: '█';
+  color: #00ff41;
+  margin-left: 0.25rem;
+  animation: terminalPromptBlink 1s step-end infinite;
+  text-shadow: 0 0 8px rgba(0, 255, 65, 0.5);
+}
+@keyframes terminalPromptBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Matrix Text — character-by-character loading appearance */
+.matrix-text {
+  font-family: var(--font-geist-mono), monospace;
+  position: relative;
+  overflow: hidden;
+}
+.matrix-text::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: #0a0a0f;
+  animation: matrixTextReveal 2s steps(40) forwards;
+  pointer-events: none;
+  z-index: 1;
+}
+@keyframes matrixTextReveal {
+  from { width: 100%; }
+  to { width: 0; }
+}
+
+/* ============================================
+   BADGE ENHANCEMENTS — Improved glow variants
+   ============================================ */
+.badge-glow-green {
+  color: #00ff41;
+  background: rgba(0, 255, 65, 0.1);
+  border: 1px solid rgba(0, 255, 65, 0.3);
+  box-shadow: 0 0 10px rgba(0, 255, 65, 0.2), inset 0 0 6px rgba(0, 255, 65, 0.05);
+  text-shadow: 0 0 8px rgba(0, 255, 65, 0.4);
+  animation: badgeGlowGreenPulse 3s ease-in-out infinite;
+}
+@keyframes badgeGlowGreenPulse {
+  0%, 100% { box-shadow: 0 0 8px rgba(0, 255, 65, 0.15), inset 0 0 4px rgba(0, 255, 65, 0.03); }
+  50% { box-shadow: 0 0 15px rgba(0, 255, 65, 0.3), inset 0 0 8px rgba(0, 255, 65, 0.06); }
+}
+
+.badge-glow-red {
+  color: #ff4444;
+  background: rgba(255, 68, 68, 0.1);
+  border: 1px solid rgba(255, 68, 68, 0.3);
+  box-shadow: 0 0 10px rgba(255, 68, 68, 0.2), inset 0 0 6px rgba(255, 68, 68, 0.05);
+  text-shadow: 0 0 8px rgba(255, 68, 68, 0.4);
+  animation: badgeGlowRedPulse 2.5s ease-in-out infinite;
+}
+@keyframes badgeGlowRedPulse {
+  0%, 100% { box-shadow: 0 0 8px rgba(255, 68, 68, 0.15), inset 0 0 4px rgba(255, 68, 68, 0.03); }
+  50% { box-shadow: 0 0 18px rgba(255, 68, 68, 0.35), inset 0 0 8px rgba(255, 68, 68, 0.06); }
+}
+
+.badge-glow-gold {
+  color: #ffd700;
+  background: rgba(255, 215, 0, 0.1);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.2), inset 0 0 6px rgba(255, 215, 0, 0.05);
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
+  animation: badgeGlowGoldPulse 3s ease-in-out infinite;
+}
+@keyframes badgeGlowGoldPulse {
+  0%, 100% { box-shadow: 0 0 8px rgba(255, 215, 0, 0.15), inset 0 0 4px rgba(255, 215, 0, 0.03); }
+  50% { box-shadow: 0 0 15px rgba(255, 215, 0, 0.3), inset 0 0 8px rgba(255, 215, 0, 0.06); }
+}
+
+.badge-glow-purple {
+  color: #a855f7;
+  background: rgba(168, 85, 247, 0.1);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  box-shadow: 0 0 10px rgba(168, 85, 247, 0.2), inset 0 0 6px rgba(168, 85, 247, 0.05);
+  text-shadow: 0 0 8px rgba(168, 85, 247, 0.4);
+  animation: badgeGlowPurplePulse 3s ease-in-out infinite;
+}
+@keyframes badgeGlowPurplePulse {
+  0%, 100% { box-shadow: 0 0 8px rgba(168, 85, 247, 0.15), inset 0 0 4px rgba(168, 85, 247, 0.03); }
+  50% { box-shadow: 0 0 15px rgba(168, 85, 247, 0.3), inset 0 0 8px rgba(168, 85, 247, 0.06); }
+}
+
+.badge-glow-orange {
+  color: #ff6b35;
+  background: rgba(255, 107, 53, 0.1);
+  border: 1px solid rgba(255, 107, 53, 0.3);
+  box-shadow: 0 0 10px rgba(255, 107, 53, 0.2), inset 0 0 6px rgba(255, 107, 53, 0.05);
+  text-shadow: 0 0 8px rgba(255, 107, 53, 0.4);
+  animation: badgeGlowOrangePulse 3s ease-in-out infinite;
+}
+@keyframes badgeGlowOrangePulse {
+  0%, 100% { box-shadow: 0 0 8px rgba(255, 107, 53, 0.15), inset 0 0 4px rgba(255, 107, 53, 0.03); }
+  50% { box-shadow: 0 0 15px rgba(255, 107, 53, 0.3), inset 0 0 8px rgba(255, 107, 53, 0.06); }
+}
+
+/* ============================================
+   SECTION DIVIDERS
+   ============================================ */
+
+/* Enhanced Section Divider — animated dots + line */
+.section-divider {
+  position: relative;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.2), transparent);
+  margin: 2rem 0;
+  overflow: visible;
+}
+.section-divider::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  background: #00ff41;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(0, 255, 65, 0.5), 0 0 20px rgba(0, 255, 65, 0.2);
+  animation: dividerDotPulse 3s ease-in-out infinite;
+}
+.section-divider::after {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, #00ff41, rgba(0, 255, 65, 0.3));
+  box-shadow: 0 0 8px rgba(0, 255, 65, 0.4);
+  border-radius: 2px;
+  animation: dividerScanEnhanced 4s ease-in-out infinite;
+}
+@keyframes dividerDotPulse {
+  0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.4); }
+}
+@keyframes dividerScanEnhanced {
+  0% { left: -80px; opacity: 0; }
+  10% { opacity: 1; }
+  50% { opacity: 0.8; }
+  90% { opacity: 1; }
+  100% { left: calc(100% + 80px); opacity: 0; }
+}
+
+/* Cyber Divider — elaborate with corner accents */
+.cyber-divider {
+  position: relative;
+  height: 40px;
+  margin: 2rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cyber-divider::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 255, 65, 0.5) 0%,
+    rgba(0, 255, 65, 0.15) 20%,
+    rgba(0, 255, 65, 0.05) 50%,
+    rgba(0, 255, 65, 0.15) 80%,
+    rgba(0, 255, 65, 0.5) 100%
+  );
+}
+.cyber-divider::after {
+  content: '◆';
+  position: relative;
+  z-index: 1;
+  color: #00ff41;
+  font-size: 0.5rem;
+  padding: 0 1rem;
+  background: #0a0a0f;
+  text-shadow: 0 0 8px rgba(0, 255, 65, 0.5);
+  animation: cyberDividerPulse 3s ease-in-out infinite;
+}
+/* Corner accent lines */
+.cyber-divider .corner-left,
+.cyber-divider .corner-right {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-color: rgba(0, 255, 65, 0.3);
+  border-style: solid;
+}
+.cyber-divider .corner-left {
+  top: 0;
+  left: 0;
+  border-width: 1px 0 0 1px;
+}
+.cyber-divider .corner-right {
+  bottom: 0;
+  right: 0;
+  border-width: 0 1px 1px 0;
+}
+@keyframes cyberDividerPulse {
+  0%, 100% { text-shadow: 0 0 6px rgba(0, 255, 65, 0.3); }
+  50% { text-shadow: 0 0 12px rgba(0, 255, 65, 0.7), 0 0 25px rgba(0, 255, 65, 0.3); }
+}
+
+/* ============================================
+   ALERT / NOTIFICATION STYLES
+   ============================================ */
+
+/* Alert Cyber — cyberpunk alert with neon border */
+.alert-cyber {
+  position: relative;
+  background: linear-gradient(135deg, rgba(0, 255, 65, 0.04) 0%, #161625 100%);
+  border: 1px solid rgba(0, 255, 65, 0.3);
+  border-left: 3px solid #00ff41;
+  border-radius: 0.5rem;
+  padding: 0.875rem 1rem;
+  color: #c8e6c9;
+  font-size: 0.875rem;
+  box-shadow:
+    0 0 12px rgba(0, 255, 65, 0.08),
+    0 4px 12px rgba(0, 0, 0, 0.3);
+}
+.alert-cyber::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(0, 255, 65, 0.4), transparent);
+}
+
+/* Alert Danger Cyber — red cyberpunk alert with pulsing */
+.alert-danger-cyber {
+  position: relative;
+  background: linear-gradient(135deg, rgba(255, 68, 68, 0.06) 0%, #161625 100%);
+  border: 1px solid rgba(255, 68, 68, 0.35);
+  border-left: 3px solid #ff4444;
+  border-radius: 0.5rem;
+  padding: 0.875rem 1rem;
+  color: #c8e6c9;
+  font-size: 0.875rem;
+  box-shadow:
+    0 0 12px rgba(255, 68, 68, 0.08),
+    0 4px 12px rgba(0, 0, 0, 0.3);
+  animation: alertDangerPulse 2s ease-in-out infinite;
+  will-change: box-shadow;
+}
+.alert-danger-cyber::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255, 68, 68, 0.5), transparent);
+}
+@keyframes alertDangerPulse {
+  0%, 100% {
+    box-shadow: 0 0 8px rgba(255, 68, 68, 0.06), 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 68, 68, 0.15), 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Alert Success Cyber — green cyberpunk alert with check animation */
+.alert-success-cyber {
+  position: relative;
+  background: linear-gradient(135deg, rgba(0, 255, 65, 0.06) 0%, #161625 100%);
+  border: 1px solid rgba(0, 255, 65, 0.35);
+  border-left: 3px solid #00ff41;
+  border-radius: 0.5rem;
+  padding: 0.875rem 1rem;
+  color: #c8e6c9;
+  font-size: 0.875rem;
+  box-shadow:
+    0 0 12px rgba(0, 255, 65, 0.1),
+    0 4px 12px rgba(0, 0, 0, 0.3);
+  animation: alertSuccessAppear 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.alert-success-cyber::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(0, 255, 65, 0.5), transparent);
+}
+@keyframes alertSuccessAppear {
+  0% {
+    opacity: 0;
+    transform: translateY(-8px);
+    border-color: transparent;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    border-color: rgba(0, 255, 65, 0.35);
+  }
+}
+
+/* ============================================
+   LOADING / SKELETON STYLES
+   ============================================ */
+
+/* Skeleton Cyber — cyberpunk skeleton loader with green shimmer */
+.skeleton-cyber {
+  position: relative;
+  background: #1a1a2e;
+  border-radius: 0.375rem;
+  overflow: hidden;
+}
+.skeleton-cyber::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 255, 65, 0.06) 20%,
+    rgba(0, 255, 65, 0.12) 50%,
+    rgba(0, 255, 65, 0.06) 80%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: skeletonCyberShimmer 1.8s ease-in-out infinite;
+}
+@keyframes skeletonCyberShimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Loading Bar — animated loading bar with scan effect */
+.loading-bar {
+  position: relative;
+  height: 4px;
+  background: rgba(0, 255, 65, 0.08);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.loading-bar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 40%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #00ff41,
+    rgba(0, 255, 65, 0.8)
+  );
+  border-radius: 2px;
+  box-shadow: 0 0 10px rgba(0, 255, 65, 0.4), 0 0 20px rgba(0, 255, 65, 0.15);
+  animation: loadingBarProgress 2s ease-in-out infinite;
+}
+.loading-bar::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  bottom: -2px;
+  width: 30px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 255, 65, 0.5),
+    transparent
+  );
+  animation: loadingBarScan 1.5s linear infinite;
+  pointer-events: none;
+}
+@keyframes loadingBarProgress {
+  0% { left: -40%; width: 40%; }
+  50% { left: 20%; width: 60%; }
+  100% { left: 100%; width: 40%; }
+}
+@keyframes loadingBarScan {
+  0% { left: -30px; }
+  100% { left: calc(100% + 30px); }
+}
+
+/* Loading Dots — three bouncing dots loading indicator */
+.loading-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.loading-dots::before,
+.loading-dots::after,
+.loading-dots span {
+  content: '';
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #00ff41;
+  box-shadow: 0 0 6px rgba(0, 255, 65, 0.4);
+  animation: loadingDotBounce 1.4s ease-in-out infinite;
+}
+.loading-dots::before {
+  animation-delay: 0s;
+}
+.loading-dots span {
+  animation-delay: 0.16s;
+}
+.loading-dots::after {
+  animation-delay: 0.32s;
+}
+@keyframes loadingDotBounce {
+  0%, 80%, 100% {
+    transform: translateY(0) scale(0.8);
+    opacity: 0.4;
+    box-shadow: 0 0 4px rgba(0, 255, 65, 0.2);
+  }
+  40% {
+    transform: translateY(-10px) scale(1);
+    opacity: 1;
+    box-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+  }
+}
+
+/* ============================================
+   IMPROVED SCROLLBAR — Enhanced cyberpunk with glow
+   ============================================ */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(10, 10, 15, 0.8);
+  border-left: 1px solid rgba(0, 255, 65, 0.04);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #1a1a2e 0%, rgba(0, 255, 65, 0.15) 50%, #1a1a2e 100%);
+  border-radius: 4px;
+  transition: all 0.25s ease;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(0, 255, 65, 0.3) 0%, #00ff41 50%, rgba(0, 255, 65, 0.3) 100%);
+  box-shadow: 0 0 8px rgba(0, 255, 65, 0.3), 0 0 15px rgba(0, 255, 65, 0.1);
+}
+::-webkit-scrollbar-corner {
+  background: rgba(10, 10, 15, 0.8);
+}
+
+/* ============================================
+   FOOTER STYLES (Enhanced)
+   ============================================ */
+.footer-cyber {
+  position: relative;
+  background: #0a0a0f;
+  padding: 2.5rem 0 1rem;
+}
+.footer-cyber::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 255, 65, 0.4) 10%,
+    #00ff41 30%,
+    rgba(0, 255, 65, 0.8) 50%,
+    #00ff41 70%,
+    rgba(0, 255, 65, 0.4) 90%,
+    transparent 100%
+  );
+  box-shadow: 0 0 15px rgba(0, 255, 65, 0.35), 0 0 30px rgba(0, 255, 65, 0.15);
+}
+.footer-cyber::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: linear-gradient(180deg, rgba(0, 255, 65, 0.05) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+/* ============================================
+   RESPONSIVE IMPROVEMENTS
+   ============================================ */
+.mobile-compact {
+  padding: 0.5rem;
+  gap: 0.5rem;
+}
+.mobile-compact .card-glow:hover,
+.mobile-compact .card-accent:hover,
+.mobile-compact .card-cyber:hover,
+.mobile-compact .card-hologram:hover,
+.mobile-compact .hover-lift:hover {
+  transform: none;
+}
+
+@media (max-width: 640px) {
+  .mobile-compact {
+    font-size: 0.8125rem;
+  }
+  .neon-text-green,
+  .neon-text-red,
+  .neon-text-gold,
+  .neon-text-purple {
+    text-shadow:
+      0 0 5px currentColor,
+      0 0 12px currentColor;
+  }
+  .card-cyber:hover,
+  .card-hologram:hover {
+    transform: none;
+  }
+  .btn-cyber,
+  .btn-neon {
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+  }
+  .scan-line-moving::before,
+  .scan-line-moving::after {
+    animation-duration: 6s;
+  }
+  .hero-gradient::after {
+    height: 60px;
+  }
+  .cyber-divider {
+    height: 24px;
+    margin: 1rem 0;
+  }
+  .pulse-ring::before,
+  .pulse-ring::after {
+    animation-duration: 3s;
+  }
+  .footer-cyber {
+    padding: 1.5rem 0 0.75rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .card-glow:hover {
+    transform: none;
+  }
+  .hover-lift:hover {
+    transform: translateY(-2px);
+  }
+  .data-stream-line::before,
+  .data-stream-line::after {
+    animation-duration: 4s;
+  }
+}
+
+/* ============================================
+   FRAMER MOTION COMPATIBLE CLASSES
+   ============================================ */
+
+/* Initial state for fade-up animation */
+.motion-fade-up {
+  opacity: 0;
+  transform: translateY(20px);
+  will-change: opacity, transform;
+}
+
+/* Initial state for slide-left animation */
+.motion-slide-left {
+  opacity: 0;
+  transform: translateX(-30px);
+  will-change: opacity, transform;
+}
+
+/* Initial state for scale-in animation */
+.motion-scale-in {
+  opacity: 0;
+  transform: scale(0.9);
+  will-change: opacity, transform;
+}
+
+/* ============================================
+   ADDITIONAL UTILITY ENHANCEMENTS
+   ============================================ */
+
+/* Flickering neon text — subtle occasional flicker */
+.flicker {
+  animation: flickerNeon 4s linear infinite;
+}
+@keyframes flickerNeon {
+  0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% {
+    opacity: 1;
+  }
+  20%, 21.999%, 63%, 63.999%, 65%, 69.999% {
+    opacity: 0.4;
+  }
+}
+
+/* Clip-path corner accents for dramatic cards */
+.clip-corner-tl {
+  clip-path: polygon(16px 0, 100% 0, 100% 100%, 0 100%, 0 16px);
+}
+.clip-corner-tr {
+  clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 0 100%);
+}
+.clip-corner-both {
+  clip-path: polygon(16px 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 0 100%, 0 16px);
+}
+
+/* Gradient overlay for depth on sections */
+.depth-overlay {
+  position: relative;
+}
+.depth-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 10, 15, 0) 0%,
+    rgba(10, 10, 15, 0.6) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Glitch line — horizontal glitch bar */
+.glitch-line {
+  position: relative;
+  overflow: hidden;
+}
+.glitch-line::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -5%;
+  width: 110%;
+  height: 1px;
+  background: rgba(0, 255, 65, 0.3);
+  animation: glitchLineDrift 8s linear infinite;
+  pointer-events: none;
+}
+.glitch-line::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: -5%;
+  width: 110%;
+  height: 1px;
+  background: rgba(0, 255, 65, 0.15);
+  animation: glitchLineDrift 12s linear infinite reverse;
+  pointer-events: none;
+}
+@keyframes glitchLineDrift {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(10%); }
+}
+
+/* Tron lines — animated border trace */
+.tron-lines {
+  position: relative;
+}
+.tron-lines::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid transparent;
+  border-image: linear-gradient(
+    var(--tron-angle, 90deg),
+    transparent 0%,
+    rgba(0, 255, 65, 0.5) 20%,
+    transparent 40%,
+    transparent 60%,
+    rgba(0, 255, 65, 0.3) 80%,
+    transparent 100%
+  ) 1;
+  animation: tronLineTrace 6s linear infinite;
+  pointer-events: none;
+}
+@keyframes tronLineTrace {
+  0% { --tron-angle: 0deg; }
+  100% { --tron-angle: 360deg; }
+}
+
+/* CRT screen curvature effect */
+.crt-effect {
+  position: relative;
+}
+.crt-effect::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 60%,
+    rgba(10, 10, 15, 0.3) 100%
+  );
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Noise texture overlay */
+.noise-overlay {
+  position: relative;
+}
+.noise-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  background-size: 128px 128px;
+  pointer-events: none;
+  z-index: 3;
+  opacity: 0.5;
+}
+
+/* Cyberpunk selection text */
+::selection {
+  background: rgba(0, 255, 65, 0.25);
+  color: #00ff41;
+  text-shadow: none;
+}
+::-moz-selection {
+  background: rgba(0, 255, 65, 0.25);
+  color: #00ff41;
+  text-shadow: none;
+}
+
+/* ============================================
+   Threat Feed Animation
+   ============================================ */
+.threat-feed-item {
+  position: relative;
+  overflow: hidden;
+}
+.threat-feed-item::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 3px;
+  height: 100%;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.3s ease;
+}
+.threat-feed-item:hover::after {
+  transform: scaleY(1);
+}
+.threat-feed-item[data-severity="critical"]::after { background: #ff4444; box-shadow: 0 0 8px #ff444460; }
+.threat-feed-item[data-severity="high"]::after { background: #ff6b35; box-shadow: 0 0 8px #ff6b3560; }
+.threat-feed-item[data-severity="medium"]::after { background: #ffd700; box-shadow: 0 0 8px #ffd70060; }
+.threat-feed-item[data-severity="low"]::after { background: #00ff41; box-shadow: 0 0 8px #00ff4160; }
+
+/* ============================================
+   Pulse Ring Animation (for status indicators)
+   ============================================ */
+.pulse-ring {
+  position: relative;
+}
+.pulse-ring::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1px solid currentColor;
+  opacity: 0;
+  animation: pulseRing 2s ease-out infinite;
+}
+@keyframes pulseRing {
+  0% { transform: scale(0.8); opacity: 0.6; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+/* ============================================
+   Hexagonal Badge
+   ============================================ */
+.hex-badge {
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ============================================
+   Scan Line Moving (horizontal)
+   ============================================ */
+.scan-line-h {
+  position: relative;
+  overflow: hidden;
+}
+.scan-line-h::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.4), transparent);
+  animation: scanH 4s ease-in-out infinite;
+}
+@keyframes scanH {
+  0% { top: -2px; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { top: calc(100% + 2px); opacity: 0; }
+}
+
+/* ============================================
+   Data Stream Background Effect
+   ============================================ */
+.data-stream-bg {
+  background-image:
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 80px,
+      rgba(0, 255, 65, 0.015) 80px,
+      rgba(0, 255, 65, 0.015) 81px
+    );
+  background-size: 81px 100%;
+}
+
+/* ============================================
+   Hover Underline Animation
+   ============================================ */
+.hover-underline {
+  position: relative;
+}
+.hover-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #00ff41;
+  transition: width 0.3s ease;
+}
+.hover-underline:hover::after {
+  width: 100%;
+}
+
+/* ============================================
+   Security Score Breakdown Bar
+   ============================================ */
+.score-bar-animated {
+  position: relative;
+  overflow: hidden;
+}
+.score-bar-animated::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  animation: shimmer 2.5s ease-in-out infinite;
+}
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 200%; }
+}
+
+/* ============================================
+   Notification Badge Pulse
+   ============================================ */
+.badge-pulse-urgent {
+  animation: badgePulse 1.5s ease-in-out infinite;
+}
+@keyframes badgePulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 68, 68, 0.4); }
+  50% { box-shadow: 0 0 0 6px rgba(255, 68, 68, 0); }
+}
+
+/* ============================================
+   Timeline Connector
+   ============================================ */
+.timeline-dot {
+  position: relative;
+}
+.timeline-dot::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid rgba(0, 255, 65, 0.3);
+  animation: timelinePulse 3s ease-in-out infinite;
+}
+@keyframes timelinePulse {
+  0%, 100% { border-color: rgba(0, 255, 65, 0.3); }
+  50% { border-color: rgba(0, 255, 65, 0.6); }
+}
+
+/* ============================================
+   Phase 4 Enhancement: Glassmorphism Cards
+   ============================================ */
+.glass-card {
+  background: linear-gradient(135deg, rgba(22, 22, 37, 0.85) 0%, rgba(26, 26, 46, 0.65) 100%);
+  backdrop-filter: blur(12px) saturate(1.5);
+  -webkit-backdrop-filter: blur(12px) saturate(1.5);
+  border: 1px solid rgba(0, 255, 65, 0.08);
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.glass-card:hover {
+  border-color: rgba(0, 255, 65, 0.2);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(0, 255, 65, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transform: translateY(-2px);
+}
+
+/* Glass card with top accent bar */
+.glass-card-accent {
+  position: relative;
+  overflow: hidden;
+}
+.glass-card-accent::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #00ff41, transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.glass-card-accent:hover::before {
+  opacity: 1;
+}
+
+/* ============================================
+   Phase 4: Password Strength Meter
+   ============================================ */
+.password-strength-meter {
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+}
+.password-strength-meter::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  animation: passwordShimmer 2s ease-in-out infinite;
+}
+@keyframes passwordShimmer {
+  0% { left: -50%; }
+  100% { left: 150%; }
+}
+
+/* Password criteria check animation */
+.criteria-check {
+  transition: all 0.3s ease;
+}
+.criteria-check.passed {
+  color: #00ff41;
+}
+.criteria-check.failed {
+  color: #7a9a7b;
+}
+
+/* ============================================
+   Phase 4: Interactive Threat Map Dots
+   ============================================ */
+.threat-dot {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ff4444;
+  box-shadow: 0 0 6px rgba(255, 68, 68, 0.5);
+  animation: threatPulse 2s ease-in-out infinite;
+}
+.threat-dot::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 68, 68, 0.3);
+  animation: threatRing 2s ease-out infinite;
+}
+@keyframes threatPulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.3); }
+}
+@keyframes threatRing {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(3); opacity: 0; }
+}
+
+.threat-dot.dot-orange {
+  background: #ff6b35;
+  box-shadow: 0 0 6px rgba(255, 107, 53, 0.5);
+}
+.threat-dot.dot-orange::before {
+  border-color: rgba(255, 107, 53, 0.3);
+}
+
+.threat-dot.dot-gold {
+  background: #ffd700;
+  box-shadow: 0 0 6px rgba(255, 215, 0, 0.5);
+}
+.threat-dot.dot-gold::before {
+  border-color: rgba(255, 215, 0, 0.3);
+}
+
+.threat-dot.dot-green {
+  background: #00ff41;
+  box-shadow: 0 0 6px rgba(0, 255, 65, 0.5);
+}
+.threat-dot.dot-green::before {
+  border-color: rgba(0, 255, 65, 0.3);
+}
+
+/* ============================================
+   Phase 4: Enhanced Button Styles
+   ============================================ */
+.btn-cyber {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+.btn-cyber::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(0, 255, 65, 0.1);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.4s, height 0.4s;
+}
+.btn-cyber:hover::before {
+  width: 200%;
+  height: 200%;
+}
+
+/* ============================================
+   Phase 4: Tab Hover Enhancement
+   ============================================ */
+[data-state="inactive"][role="tab"] {
+  transition: all 0.25s ease;
+  position: relative;
+}
+[data-state="inactive"][role="tab"]:hover {
+  color: #00ff41;
+  background: rgba(0, 255, 65, 0.05);
+}
+[data-state="inactive"][role="tab"]::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: #00ff41;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+  opacity: 0;
+}
+[data-state="inactive"][role="tab"]:hover::after {
+  width: 50%;
+  opacity: 0.5;
+}
+
+/* ============================================
+   Phase 4: Notification Badge Enhancement
+   ============================================ */
+.notification-badge {
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  border-radius: 9px;
+  background: linear-gradient(135deg, #ff4444, #cc3333);
+  color: white;
+  font-size: 10px;
+  font-family: var(--font-geist-mono), monospace;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 8px rgba(255, 68, 68, 0.5), 0 2px 4px rgba(0, 0, 0, 0.3);
+  animation: badgeBounce 0.3s ease-out;
+}
+@keyframes badgeBounce {
+  0% { transform: scale(0.5); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+/* ============================================
+   Phase 4: Input Focus Enhancement
+   ============================================ */
+input.cyber-input:focus,
+textarea.cyber-input:focus {
+  border-color: rgba(0, 255, 65, 0.5) !important;
+  box-shadow:
+    0 0 0 2px rgba(0, 255, 65, 0.1),
+    0 0 12px rgba(0, 255, 65, 0.08);
+  background: rgba(0, 255, 65, 0.02);
+}
+
+/* ============================================
+   Phase 4: Gradient Section Headers
+   ============================================ */
+.section-header-glow {
+  position: relative;
+}
+.section-header-glow::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, #00ff41, transparent);
+  border-radius: 1px;
+}
+
+/* ============================================
+   Phase 4: Map Grid Lines
+   ============================================ */
+.map-grid {
+  background-image:
+    linear-gradient(rgba(0, 255, 65, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 65, 0.04) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* ============================================
+   Phase 4: News Feed Category Pill Active
+   ============================================ */
+.news-pill-active {
+  background: rgba(0, 255, 65, 0.12);
+  border-color: rgba(0, 255, 65, 0.5);
+  color: #00ff41;
+  box-shadow: 0 0 8px rgba(0, 255, 65, 0.15);
+}
+
+/* ============================================
+   Phase 5: Card Depth & Shadow System
+   ============================================ */
+.card-depth-1 {
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.2),
+    0 2px 8px rgba(0, 0, 0, 0.15);
+}
+.card-depth-2 {
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.25),
+    0 4px 16px rgba(0, 0, 0, 0.2),
+    0 0 1px rgba(0, 255, 65, 0.05);
+}
+.card-depth-3 {
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.3),
+    0 8px 32px rgba(0, 0, 0, 0.25),
+    0 0 2px rgba(0, 255, 65, 0.08);
+}
+
+/* ============================================
+   Phase 5: Section Enter Animations
+   ============================================ */
+.section-enter {
+  animation: sectionFadeIn 0.5s ease-out;
+}
+@keyframes sectionFadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================
+   Phase 5: Hover Lift with Shadow
+   ============================================ */
+.hover-lift-shadow {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.hover-lift-shadow:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 6px 20px rgba(0, 0, 0, 0.35),
+    0 0 12px rgba(0, 255, 65, 0.06);
+}
+
+/* ============================================
+   Phase 5: Status Badge with Icon
+   ============================================ */
+.status-badge-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 12px;
+  background: rgba(0, 255, 65, 0.05);
+  border: 1px solid rgba(0, 255, 65, 0.2);
+  transition: all 0.25s ease;
+}
+.status-badge-icon:hover {
+  background: rgba(0, 255, 65, 0.08);
+  border-color: rgba(0, 255, 65, 0.35);
+}
+
+/* ============================================
+   Phase 5: Network Graph Bar Hover
+   ============================================ */
+.traffic-bar {
+  transition: all 0.3s ease;
+  border-radius: 2px 2px 0 0;
+}
+.traffic-bar:hover {
+  filter: brightness(1.3);
+  box-shadow: 0 0 8px currentColor;
+}
+
+/* ============================================
+   Phase 5: Mobile Bottom Nav
+   ============================================ */
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* ============================================
+   Phase 5: Utility Animation Classes
+   ============================================ */
+.animate-fade-in {
+  animation: animateFadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+@keyframes animateFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-slide-up {
+  animation: animateSlideUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+@keyframes animateSlideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Subtle pulse for status indicators — professional, not distracting */
+.animate-pulse-subtle {
+  animation: animatePulseSubtle 3s ease-in-out infinite;
+}
+@keyframes animatePulseSubtle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.65; }
+}
+
+/* Glow animation for important elements */
+.animate-glow {
+  animation: animateGlow 2.5s ease-in-out infinite;
+}
+@keyframes animateGlow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(0, 255, 65, 0.15), 0 0 10px rgba(0, 255, 65, 0.05);
+  }
+  50% {
+    box-shadow: 0 0 12px rgba(0, 255, 65, 0.3), 0 0 24px rgba(0, 255, 65, 0.12);
+  }
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.3s ease-out;
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Stagger children animation */
+.stagger-children > * {
+  animation: slideUp 0.4s ease-out both;
+}
+.stagger-children > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger-children > *:nth-child(2) { animation-delay: 0.1s; }
+.stagger-children > *:nth-child(3) { animation-delay: 0.15s; }
+.stagger-children > *:nth-child(4) { animation-delay: 0.2s; }
+.stagger-children > *:nth-child(5) { animation-delay: 0.25s; }
+.stagger-children > *:nth-child(6) { animation-delay: 0.3s; }
+
+/* ============================================
+   Phase 5: Enhanced Scroll Area
+   ============================================ */
+.scroll-area-enhanced {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 255, 65, 0.2) transparent;
+}
+.scroll-area-enhanced::-webkit-scrollbar {
+  width: 4px;
+}
+.scroll-area-enhanced::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scroll-area-enhanced::-webkit-scrollbar-thumb {
+  background: rgba(0, 255, 65, 0.15);
+  border-radius: 2px;
+}
+.scroll-area-enhanced::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 255, 65, 0.3);
+}
+
+/* ============================================
+   Phase 5: Copy Button Feedback
+   ============================================ */
+.copy-feedback {
+  position: relative;
+}
+.copy-feedback::after {
+  content: 'Copied!';
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 9px;
+  font-family: var(--font-geist-mono), monospace;
+  color: #00ff41;
+  background: rgba(0, 255, 65, 0.1);
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 255, 65, 0.3);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+.copy-feedback.copied::after {
+  opacity: 1;
+  animation: fadeInOut 1.5s ease forwards;
+}
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateX(-50%) translateY(4px); }
+  20% { opacity: 1; transform: translateX(-50%) translateY(0); }
+  80% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* ============================================
+   Phase 5: Tooltip Enhancement
+   ============================================ */
+[data-radix-tooltip-content] {
+  background: linear-gradient(135deg, #161625 0%, #1a1a2e 100%);
+  border: 1px solid rgba(0, 255, 65, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 8px rgba(0, 255, 65, 0.05);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 11px;
+}
+
+/* ================================================================
+   V2.0 ENHANCEMENTS — Visual Quality Push to 9/10
+   ================================================================ */
+
+/* ============================================
+   CARD CYBER — Enhanced hover with pronounced lift + border glow
+   ============================================ */
+.card-cyber:hover {
+  transform: translateY(-6px) scale(1.005);
+  box-shadow:
+    0 0 20px rgba(0, 255, 65, 0.15),
+    0 0 50px rgba(0, 255, 65, 0.06),
+    0 16px 40px rgba(0, 0, 0, 0.55),
+    inset 0 0 20px rgba(0, 255, 65, 0.03);
+  border-color: rgba(0, 255, 65, 0.4);
+}
+
+/* ============================================
+   BUTTON HOVER & ACTIVE STATES
+   ============================================ */
+
+/* btn-cyber-hover — primary button with glow on hover */
+.btn-cyber-hover {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  background: rgba(0, 255, 65, 0.08);
+  border: 1px solid rgba(0, 255, 65, 0.35);
+  color: #00ff41;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  border-radius: 0.375rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+.btn-cyber-hover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(0, 255, 65, 0.15), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.btn-cyber-hover:hover {
+  background: rgba(0, 255, 65, 0.14);
+  border-color: rgba(0, 255, 65, 0.7);
+  box-shadow:
+    0 0 12px rgba(0, 255, 65, 0.2),
+    0 0 30px rgba(0, 255, 65, 0.08),
+    inset 0 0 12px rgba(0, 255, 65, 0.04);
+  transform: translateY(-1px);
+  text-shadow: 0 0 8px rgba(0, 255, 65, 0.4);
+}
+.btn-cyber-hover:hover::before {
+  opacity: 1;
+}
+
+/* btn-cyber-active — pressed/active state with inward shadow */
+.btn-cyber-active {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  background: rgba(0, 255, 65, 0.18);
+  border: 1px solid rgba(0, 255, 65, 0.6);
+  color: #00ff41;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  border-radius: 0.375rem;
+  box-shadow:
+    inset 0 2px 8px rgba(0, 0, 0, 0.4),
+    inset 0 0 12px rgba(0, 255, 65, 0.06);
+  transform: translateY(1px) scale(0.98);
+  transition: all 0.15s ease;
+}
+.btn-cyber-active:active {
+  box-shadow:
+    inset 0 3px 12px rgba(0, 0, 0, 0.5),
+    inset 0 0 16px rgba(0, 255, 65, 0.1);
+  transform: translateY(2px) scale(0.96);
+}
+
+/* ============================================
+   SEARCH INPUT — Cyberpunk search field
+   ============================================ */
+.search-input-cyber {
+  width: 100%;
+  padding: 0.625rem 1rem 0.625rem 2.5rem;
+  background: rgba(10, 10, 15, 0.6);
+  border: 1px solid rgba(0, 255, 65, 0.15);
+  border-radius: 0.5rem;
+  color: #c8e6c9;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.875rem;
+  outline: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.search-input-cyber::placeholder {
+  color: rgba(122, 154, 123, 0.6);
+  font-style: italic;
+}
+.search-input-cyber:hover {
+  border-color: rgba(0, 255, 65, 0.3);
+  background: rgba(10, 10, 15, 0.8);
+}
+.search-input-cyber:focus {
+  border-color: rgba(0, 255, 65, 0.5);
+  background: rgba(10, 10, 15, 0.9);
+  box-shadow:
+    0 0 0 3px rgba(0, 255, 65, 0.08),
+    0 0 15px rgba(0, 255, 65, 0.1);
+}
+
+/* ============================================
+   TEXT READABILITY CLASSES
+   ============================================ */
+
+/* Primary readable text — high contrast for body/descriptions */
+.text-readable {
+  color: #d4e8d5;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+}
+
+/* Subtle/secondary text — adequate contrast for metadata/labels */
+.text-subtle {
+  color: #94b896;
+  line-height: 1.5;
+}
+
+/* Bright/important text — stands out on dark backgrounds */
+.text-bright {
+  color: #e8f5e9;
+  font-weight: 500;
+  text-shadow: 0 0 6px rgba(0, 255, 65, 0.15);
+}
+
+/* ============================================
+   LIGHT THEME — Cyberpunk light mode
+   ============================================ */
+:root:not(.dark),
+.light {
+  --background: #f5f5f0;
+  --foreground: #1a1a2e;
+  --card: #ffffff;
+  --card-foreground: #1a1a2e;
+  --popover: #ffffff;
+  --popover-foreground: #1a1a2e;
+  --primary: #0a6e1e;
+  --primary-foreground: #f5f5f0;
+  --secondary: #e5e5e0;
+  --secondary-foreground: #1a1a2e;
+  --muted: #e5e5e0;
+  --muted-foreground: #5a5a6e;
+  --accent: #d4f0d4;
+  --accent-foreground: #0a6e1e;
+  --destructive: #cc3333;
+  --border: #d4d4d0;
+  --input: #d4d4d0;
+  --ring: #0a6e1e;
+  --chart-1: #0a6e1e;
+  --chart-2: #e65c00;
+  --chart-3: #b8960a;
+  --chart-4: #cc3333;
+  --chart-5: #7c3aed;
+  --sidebar: #eaeae5;
+  --sidebar-foreground: #1a1a2e;
+  --sidebar-primary: #0a6e1e;
+  --sidebar-primary-foreground: #f5f5f0;
+  --sidebar-accent: #d4f0d4;
+  --sidebar-accent-foreground: #1a1a2e;
+  --sidebar-border: #d4d4d0;
+  --sidebar-ring: #0a6e1e;
+  --color-julius-green: #0a6e1e;
+  --color-julius-dark: #f5f5f0;
+  --color-julius-card: #ffffff;
+  --color-julius-border: #d4d4d0;
+  --color-julius-text: #1a1a2e;
+  --color-julius-muted: #5a5a6e;
+}
+
+/* Light theme component overrides */
+:root:not(.dark) .card-cyber,
+.light .card-cyber {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f8f5 100%);
+}
+:root:not(.dark) .card-cyber::before,
+.light .card-cyber::before {
+  background: linear-gradient(
+    135deg,
+    rgba(10, 110, 30, 0.4) 0%,
+    rgba(10, 110, 30, 0.08) 30%,
+    transparent 50%,
+    rgba(10, 110, 30, 0.08) 70%,
+    rgba(10, 110, 30, 0.4) 100%
+  );
+  background-size: 200% 200%;
+}
+:root:not(.dark) .card-cyber:hover,
+.light .card-cyber:hover {
+  box-shadow:
+    0 0 15px rgba(10, 110, 30, 0.1),
+    0 12px 30px rgba(0, 0, 0, 0.08);
+  border-color: rgba(10, 110, 30, 0.25);
+}
+
+:root:not(.dark) .btn-cyber,
+.light .btn-cyber {
+  background: rgba(10, 110, 30, 0.06);
+  border-color: rgba(10, 110, 30, 0.35);
+  color: #0a6e1e;
+}
+:root:not(.dark) .btn-cyber:hover,
+.light .btn-cyber:hover {
+  background: rgba(10, 110, 30, 0.1);
+  border-color: rgba(10, 110, 30, 0.6);
+  box-shadow: 0 0 10px rgba(10, 110, 30, 0.15);
+}
+
+:root:not(.dark) .terminal-box,
+.light .terminal-box {
+  background: #f0f0eb;
+  border-color: #d4d4d0;
+}
+:root:not(.dark) .terminal-box::before,
+.light .terminal-box::before {
+  color: #0a6e1e;
+}
+
+:root:not(.dark) .footer-cyber,
+.light .footer-cyber {
+  background: #eaeae5;
+}
+:root:not(.dark) .footer-cyber::before,
+.light .footer-cyber::before {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(10, 110, 30, 0.3) 15%,
+    #0a6e1e 50%,
+    rgba(10, 110, 30, 0.3) 85%,
+    transparent 100%
+  );
+  box-shadow: 0 0 8px rgba(10, 110, 30, 0.2);
+}
+
+:root:not(.dark) .scanline-overlay,
+.light .scanline-overlay {
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(10, 110, 30, 0.008) 2px,
+    rgba(10, 110, 30, 0.008) 4px
+  );
+}
+
+:root:not(.dark) ::selection,
+.light ::selection {
+  background: rgba(10, 110, 30, 0.2);
+  color: #0a6e1e;
+}
+
+:root:not(.dark) .search-input-cyber,
+.light .search-input-cyber {
+  background: rgba(255, 255, 255, 0.8);
+  border-color: rgba(10, 110, 30, 0.2);
+  color: #1a1a2e;
+}
+:root:not(.dark) .search-input-cyber::placeholder,
+.light .search-input-cyber::placeholder {
+  color: rgba(90, 90, 110, 0.5);
+}
+:root:not(.dark) .search-input-cyber:focus,
+.light .search-input-cyber:focus {
+  border-color: rgba(10, 110, 30, 0.5);
+  box-shadow: 0 0 0 3px rgba(10, 110, 30, 0.08);
+}
+
+:root:not(.dark) .badge-glow-green,
+.light .badge-glow-green {
+  color: #0a6e1e;
+  background: rgba(10, 110, 30, 0.08);
+  border-color: rgba(10, 110, 30, 0.25);
+  box-shadow: 0 0 6px rgba(10, 110, 30, 0.1);
+  text-shadow: none;
+}
+
+:root:not(.dark) .neon-text-green,
+.light .neon-text-green {
+  color: #0a6e1e;
+  text-shadow: 0 0 5px rgba(10, 110, 30, 0.2);
+}
+
+:root:not(.dark) ::-webkit-scrollbar-track,
+.light ::-webkit-scrollbar-track {
+  background: #eaeae5;
+}
+:root:not(.dark) ::-webkit-scrollbar-thumb,
+.light ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #d4d4d0 0%, rgba(10, 110, 30, 0.15) 50%, #d4d4d0 100%);
+}
+:root:not(.dark) ::-webkit-scrollbar-thumb:hover,
+.light ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(10, 110, 30, 0.3) 0%, #0a6e1e 50%, rgba(10, 110, 30, 0.3) 100%);
+}
+
+:root:not(.dark) .tab-active-bar[data-state="active"],
+:root:not(.dark) .tab-active-bar[aria-selected="true"],
+:root:not(.dark) .tab-active-bar.active,
+.light .tab-active-bar[data-state="active"],
+.light .tab-active-bar[aria-selected="true"],
+.light .tab-active-bar.active {
+  color: #0a6e1e;
+  background: rgba(10, 110, 30, 0.06);
+  text-shadow: none;
+}
+:root:not(.dark) .tab-active-bar::after,
+.light .tab-active-bar::after {
+  background: linear-gradient(90deg, #0a6e1e, rgba(10, 110, 30, 0.3));
+}
+
+:root:not(.dark) .fab-cyber,
+.light .fab-cyber {
+  background: rgba(10, 110, 30, 0.9);
+  box-shadow: 0 4px 16px rgba(10, 110, 30, 0.2);
+}
+:root:not(.dark) .fab-cyber:hover,
+.light .fab-cyber:hover {
+  background: #0a6e1e;
+  box-shadow: 0 6px 24px rgba(10, 110, 30, 0.3);
+}
+
+/* ============================================
+   FLOATING ACTION BUTTON — FAB Cyberpunk
+   ============================================ */
+.fab-cyber {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 35;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  background: rgba(0, 255, 65, 0.12);
+  border: 1px solid rgba(0, 255, 65, 0.4);
+  border-radius: 50%;
+  color: #00ff41;
+  font-size: 1.25rem;
+  cursor: pointer;
+  box-shadow:
+    0 0 12px rgba(0, 255, 65, 0.15),
+    0 4px 16px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.fab-cyber:hover {
+  background: rgba(0, 255, 65, 0.2);
+  border-color: rgba(0, 255, 65, 0.7);
+  box-shadow:
+    0 0 20px rgba(0, 255, 65, 0.25),
+    0 0 40px rgba(0, 255, 65, 0.08),
+    0 6px 24px rgba(0, 0, 0, 0.5);
+  transform: translateY(-3px) scale(1.05);
+}
+.fab-cyber:active {
+  transform: translateY(0) scale(0.95);
+  box-shadow:
+    inset 0 2px 6px rgba(0, 0, 0, 0.3),
+    0 0 8px rgba(0, 255, 65, 0.2);
+}
+/* Extended FAB with label */
+.fab-cyber-extended {
+  width: auto;
+  padding: 0 1.25rem;
+  gap: 0.5rem;
+  border-radius: 26px;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ============================================
+   NEWS FEED CARD — News article card styling
+   ============================================ */
+.news-card {
+  position: relative;
+  background: linear-gradient(135deg, #161625 0%, #0d0d18 100%);
+  border: 1px solid rgba(26, 26, 46, 0.8);
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+.news-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.3), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.news-card:hover {
+  border-color: rgba(0, 255, 65, 0.25);
+  box-shadow:
+    0 0 15px rgba(0, 255, 65, 0.06),
+    0 8px 24px rgba(0, 0, 0, 0.35);
+  transform: translateY(-2px);
+}
+.news-card:hover::before {
+  opacity: 1;
+}
+.news-card .news-source {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #7a9a7b;
+  margin-bottom: 0.5rem;
+}
+.news-card .news-title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #d4e8d5;
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+  transition: color 0.2s ease;
+}
+.news-card:hover .news-title {
+  color: #00ff41;
+}
+.news-card .news-excerpt {
+  font-size: 0.8125rem;
+  color: #94b896;
+  line-height: 1.5;
+  margin-bottom: 0.75rem;
+}
+.news-card .news-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.6875rem;
+  color: #7a9a7b;
+  font-family: var(--font-geist-mono), monospace;
+}
+.news-card .news-category {
+  display: inline-flex;
+  padding: 0.125rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.625rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ============================================
+   IMPROVED BADGE GLOW — More subtle & professional
+   ============================================ */
+
+/* Refined badge glow — softer, less flashy but still visible */
+.badge-glow-green {
+  color: #00ff41;
+  background: rgba(0, 255, 65, 0.08);
+  border: 1px solid rgba(0, 255, 65, 0.25);
+  box-shadow: 0 0 6px rgba(0, 255, 65, 0.1), inset 0 0 4px rgba(0, 255, 65, 0.03);
+  text-shadow: 0 0 4px rgba(0, 255, 65, 0.2);
+  animation: badgeGlowGreenRefined 4s ease-in-out infinite;
+}
+@keyframes badgeGlowGreenRefined {
+  0%, 100% { box-shadow: 0 0 4px rgba(0, 255, 65, 0.08), inset 0 0 2px rgba(0, 255, 65, 0.02); }
+  50% { box-shadow: 0 0 10px rgba(0, 255, 65, 0.18), inset 0 0 6px rgba(0, 255, 65, 0.04); }
+}
+
+.badge-glow-red {
+  color: #ff4444;
+  background: rgba(255, 68, 68, 0.08);
+  border: 1px solid rgba(255, 68, 68, 0.25);
+  box-shadow: 0 0 6px rgba(255, 68, 68, 0.1), inset 0 0 4px rgba(255, 68, 68, 0.03);
+  text-shadow: 0 0 4px rgba(255, 68, 68, 0.2);
+  animation: badgeGlowRedRefined 3.5s ease-in-out infinite;
+}
+@keyframes badgeGlowRedRefined {
+  0%, 100% { box-shadow: 0 0 4px rgba(255, 68, 68, 0.08), inset 0 0 2px rgba(255, 68, 68, 0.02); }
+  50% { box-shadow: 0 0 12px rgba(255, 68, 68, 0.2), inset 0 0 6px rgba(255, 68, 68, 0.04); }
+}
+
+.badge-glow-gold {
+  color: #ffd700;
+  background: rgba(255, 215, 0, 0.08);
+  border: 1px solid rgba(255, 215, 0, 0.25);
+  box-shadow: 0 0 6px rgba(255, 215, 0, 0.1), inset 0 0 4px rgba(255, 215, 0, 0.03);
+  text-shadow: 0 0 4px rgba(255, 215, 0, 0.2);
+  animation: badgeGlowGoldRefined 4s ease-in-out infinite;
+}
+@keyframes badgeGlowGoldRefined {
+  0%, 100% { box-shadow: 0 0 4px rgba(255, 215, 0, 0.08), inset 0 0 2px rgba(255, 215, 0, 0.02); }
+  50% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.18), inset 0 0 6px rgba(255, 215, 0, 0.04); }
+}
+
+.badge-glow-purple {
+  color: #a855f7;
+  background: rgba(168, 85, 247, 0.08);
+  border: 1px solid rgba(168, 85, 247, 0.25);
+  box-shadow: 0 0 6px rgba(168, 85, 247, 0.1), inset 0 0 4px rgba(168, 85, 247, 0.03);
+  text-shadow: 0 0 4px rgba(168, 85, 247, 0.2);
+  animation: badgeGlowPurpleRefined 4s ease-in-out infinite;
+}
+@keyframes badgeGlowPurpleRefined {
+  0%, 100% { box-shadow: 0 0 4px rgba(168, 85, 247, 0.08), inset 0 0 2px rgba(168, 85, 247, 0.02); }
+  50% { box-shadow: 0 0 10px rgba(168, 85, 247, 0.18), inset 0 0 6px rgba(168, 85, 247, 0.04); }
+}
+
+.badge-glow-orange {
+  color: #ff6b35;
+  background: rgba(255, 107, 53, 0.08);
+  border: 1px solid rgba(255, 107, 53, 0.25);
+  box-shadow: 0 0 6px rgba(255, 107, 53, 0.1), inset 0 0 4px rgba(255, 107, 53, 0.03);
+  text-shadow: 0 0 4px rgba(255, 107, 53, 0.2);
+  animation: badgeGlowOrangeRefined 4s ease-in-out infinite;
+}
+@keyframes badgeGlowOrangeRefined {
+  0%, 100% { box-shadow: 0 0 4px rgba(255, 107, 53, 0.08), inset 0 0 2px rgba(255, 107, 53, 0.02); }
+  50% { box-shadow: 0 0 10px rgba(255, 107, 53, 0.18), inset 0 0 6px rgba(255, 107, 53, 0.04); }
+}
+
+/* ============================================
+   NEW: Security Analytics Chart Styles
+   ============================================ */
+
+.chart-container {
+  background: #161625;
+  border: 1px solid rgba(0, 255, 65, 0.1);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.chart-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0, 255, 65, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 65, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+}
+
+.chart-line {
+  stroke: #00ff41;
+  stroke-width: 2;
+  fill: none;
+  filter: drop-shadow(0 0 4px rgba(0, 255, 65, 0.5));
+  animation: chartLineDraw 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes chartLineDraw {
+  from {
+    stroke-dashoffset: 1000;
+    opacity: 0;
+  }
+  to {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+.chart-dot {
+  fill: #00ff41;
+  r: 4;
+  filter: drop-shadow(0 0 6px rgba(0, 255, 65, 0.7));
+  transition: r 0.2s ease-in-out, filter 0.2s ease-in-out;
+}
+
+.chart-dot:hover {
+  r: 7;
+  filter: drop-shadow(0 0 12px rgba(0, 255, 65, 0.9));
+}
+
+.chart-tooltip {
+  position: absolute;
+  background: rgba(22, 22, 37, 0.95);
+  border: 1px solid rgba(0, 255, 65, 0.3);
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.75rem;
+  color: #e0e0e0;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+  box-shadow:
+    0 0 10px rgba(0, 255, 65, 0.15),
+    0 4px 12px rgba(0, 0, 0, 0.5);
+  z-index: 50;
+  white-space: nowrap;
+}
+
+.chart-tooltip.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.donut-chart-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-family: var(--font-geist-mono), monospace;
+}
+
+.donut-chart-center .value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #00ff41;
+  text-shadow: 0 0 8px rgba(0, 255, 65, 0.4);
+  line-height: 1;
+}
+
+.donut-chart-center .label {
+  font-size: 0.7rem;
+  color: rgba(224, 224, 224, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 0.25rem;
+}
+
+/* ============================================
+   NEW: Activity Feed Styles
+   ============================================ */
+
+.activity-feed-container {
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 255, 65, 0.2) transparent;
+}
+
+.activity-feed-container::-webkit-scrollbar {
+  width: 4px;
+}
+
+.activity-feed-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.activity-feed-container::-webkit-scrollbar-thumb {
+  background: rgba(0, 255, 65, 0.2);
+  border-radius: 2px;
+}
+
+.activity-feed-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 255, 65, 0.4);
+}
+
+.activity-entry {
+  position: relative;
+  padding: 0.75rem 1rem 0.75rem 1.25rem;
+  margin-bottom: 0.5rem;
+  background: rgba(22, 22, 37, 0.6);
+  border-radius: 0.5rem;
+  border-left: 3px solid rgba(0, 255, 65, 0.4);
+  transition: all 0.25s ease-in-out;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.8rem;
+  color: #e0e0e0;
+}
+
+.activity-entry:hover {
+  background: rgba(22, 22, 37, 0.9);
+  transform: translateX(4px);
+}
+
+.activity-entry-critical {
+  border-left-color: #ff4444;
+  box-shadow: inset 3px 0 8px -3px rgba(255, 68, 68, 0.3);
+}
+
+.activity-entry-critical:hover {
+  box-shadow:
+    inset 3px 0 12px -3px rgba(255, 68, 68, 0.4),
+    0 0 8px rgba(255, 68, 68, 0.1);
+}
+
+.activity-entry-warning {
+  border-left-color: #ffd700;
+  box-shadow: inset 3px 0 8px -3px rgba(255, 215, 0, 0.3);
+}
+
+.activity-entry-warning:hover {
+  box-shadow:
+    inset 3px 0 12px -3px rgba(255, 215, 0, 0.4),
+    0 0 8px rgba(255, 215, 0, 0.1);
+}
+
+.activity-entry-info {
+  border-left-color: #00ff41;
+  box-shadow: inset 3px 0 8px -3px rgba(0, 255, 65, 0.3);
+}
+
+.activity-entry-info:hover {
+  box-shadow:
+    inset 3px 0 12px -3px rgba(0, 255, 65, 0.4),
+    0 0 8px rgba(0, 255, 65, 0.1);
+}
+
+.activity-pulse {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #00ff41;
+  margin-right: 0.5rem;
+  animation: activityPulse 2s ease-in-out infinite;
+  vertical-align: middle;
+}
+
+@keyframes activityPulse {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 4px rgba(0, 255, 65, 0.4);
+  }
+  50% {
+    opacity: 0.4;
+    box-shadow: 0 0 12px rgba(0, 255, 65, 0.8);
+  }
+}
+
+.activity-timeline-line {
+  position: absolute;
+  left: 0.625rem;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 255, 65, 0.4),
+    rgba(0, 255, 65, 0.05)
+  );
+}
+
+/* ============================================
+   NEW: Network Topology Styles
+   ============================================ */
+
+.topology-container {
+  background: #0a0a0f;
+  border: 1px solid rgba(0, 255, 65, 0.1);
+  border-radius: 0.75rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.topology-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at center, rgba(0, 255, 65, 0.02) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.topology-node {
+  fill: #161625;
+  stroke: #00ff41;
+  stroke-width: 1.5;
+  filter: drop-shadow(0 0 4px rgba(0, 255, 65, 0.3));
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.topology-node:hover {
+  stroke-width: 2.5;
+  filter: drop-shadow(0 0 12px rgba(0, 255, 65, 0.6));
+  fill: rgba(0, 255, 65, 0.08);
+}
+
+.topology-node-active {
+  fill: rgba(0, 255, 65, 0.1);
+  stroke: #00ff41;
+  stroke-width: 2;
+  animation: topologyNodePulse 2.5s ease-in-out infinite;
+}
+
+@keyframes topologyNodePulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 4px rgba(0, 255, 65, 0.3));
+  }
+  50% {
+    filter: drop-shadow(0 0 16px rgba(0, 255, 65, 0.7));
+  }
+}
+
+.topology-link {
+  stroke: rgba(0, 255, 65, 0.15);
+  stroke-width: 1;
+  fill: none;
+  transition: stroke 0.3s ease-in-out;
+}
+
+.topology-link:hover {
+  stroke: rgba(0, 255, 65, 0.4);
+}
+
+.topology-link-data {
+  stroke: #00ff41;
+  stroke-width: 1.5;
+  fill: none;
+  stroke-dasharray: 4 8;
+  animation: topologyDataFlow 1.5s linear infinite;
+  filter: drop-shadow(0 0 3px rgba(0, 255, 65, 0.5));
+}
+
+@keyframes topologyDataFlow {
+  from {
+    stroke-dashoffset: 24;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* ============================================
+   NEW: Enhanced Card Styles (Glassmorphism v2)
+   ============================================ */
+
+.card-glass {
+  background: rgba(22, 22, 37, 0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid transparent;
+  border-image: linear-gradient(
+    135deg,
+    rgba(0, 255, 65, 0.2),
+    rgba(168, 85, 247, 0.15),
+    rgba(255, 215, 0, 0.1),
+    rgba(0, 255, 65, 0.05)
+  ) 1;
+  border-radius: 0.75rem;
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-glass:hover {
+  background: rgba(22, 22, 37, 0.7);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(0, 255, 65, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transform: translateY(-2px);
+}
+
+/* Enhanced hologram — augmented holographic shimmer on hover */
+.card-hologram-enhanced {
+  position: relative;
+  background: rgba(22, 22, 37, 0.6);
+  border: 1px solid rgba(26, 26, 46, 0.8);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.card-hologram-enhanced::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 255, 65, 0.1) 0%,
+    rgba(168, 85, 247, 0.08) 20%,
+    rgba(255, 215, 0, 0.1) 40%,
+    rgba(255, 107, 53, 0.08) 60%,
+    rgba(0, 255, 65, 0.06) 80%,
+    rgba(168, 85, 247, 0.1) 100%
+  );
+  background-size: 400% 400%;
+  animation: hologramEnhancedShift 6s ease infinite;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.card-hologram-enhanced::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.02) 40%,
+    rgba(255, 255, 255, 0.06) 50%,
+    rgba(255, 255, 255, 0.02) 60%,
+    transparent 80%
+  );
+  background-size: 250% 100%;
+  animation: hologramEnhancedShine 5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.card-hologram-enhanced:hover {
+  border-color: rgba(168, 85, 247, 0.4);
+  transform: translateY(-3px) scale(1.008);
+  box-shadow:
+    0 0 24px rgba(168, 85, 247, 0.15),
+    0 0 48px rgba(0, 255, 65, 0.08),
+    0 12px 32px rgba(0, 0, 0, 0.5);
+}
+
+.card-hologram-enhanced:hover::before {
+  opacity: 1;
+}
+
+@keyframes hologramEnhancedShift {
+  0%, 100% { background-position: 0% 50%; }
+  25% { background-position: 100% 0%; }
+  50% { background-position: 100% 100%; }
+  75% { background-position: 0% 100%; }
+}
+
+@keyframes hologramEnhancedShine {
+  0%, 100% { background-position: -150% 0; }
+  50% { background-position: 250% 0; }
+}
+
+.card-gradient-border {
+  position: relative;
+  background: #161625;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 0.75rem;
+  padding: 1px;
+  background: linear-gradient(
+    var(--gradient-angle, 135deg),
+    #00ff41,
+    #a855f7,
+    #ffd700,
+    #ff6b35,
+    #00ff41
+  );
+  background-size: 300% 300%;
+  animation: gradientBorderRotate 4s ease infinite;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+  pointer-events: none;
+}
+
+@keyframes gradientBorderRotate {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.card-gradient-border:hover {
+  box-shadow:
+    0 0 16px rgba(0, 255, 65, 0.12),
+    0 0 32px rgba(168, 85, 247, 0.08);
+  transform: translateY(-2px);
+}
+
+/* Enhanced hover glow — augmented version of existing card-hover-glow */
+.card-hover-glow-enhanced {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(26, 26, 46, 0.6);
+}
+
+.card-hover-glow-enhanced:hover {
+  border-color: rgba(0, 255, 65, 0.5);
+  box-shadow:
+    0 0 12px rgba(0, 255, 65, 0.2),
+    0 0 36px rgba(0, 255, 65, 0.1),
+    0 0 72px rgba(0, 255, 65, 0.05),
+    inset 0 0 24px rgba(0, 255, 65, 0.04);
+  transform: translateY(-4px);
+  background-color: rgba(0, 255, 65, 0.03);
+}
+
+/* ============================================
+   NEW: Skeleton Loading States
+   ============================================ */
+
+.skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(22, 22, 37, 0.6) 25%,
+    rgba(0, 255, 65, 0.06) 37%,
+    rgba(22, 22, 37, 0.6) 63%
+  );
+  background-size: 400% 100%;
+  animation: skeletonShimmer 1.8s ease-in-out infinite;
+  border-radius: 0.375rem;
+}
+
+@keyframes skeletonShimmer {
+  0% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.skeleton-bar {
+  height: 12px;
+  width: 100%;
+  border-radius: 0.375rem;
+  background: #161625;
+  position: relative;
+  overflow: hidden;
+}
+
+.skeleton-bar::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 255, 65, 0.08) 50%,
+    transparent 100%
+  );
+  animation: skeletonBarSweep 1.8s ease-in-out infinite;
+}
+
+@keyframes skeletonBarSweep {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.skeleton-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #161625;
+  position: relative;
+  overflow: hidden;
+}
+
+.skeleton-circle::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 255, 65, 0.08) 50%,
+    transparent 100%
+  );
+  animation: skeletonBarSweep 1.8s ease-in-out infinite;
+}
+
+.skeleton-text {
+  height: 10px;
+  border-radius: 0.25rem;
+  background: #161625;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.skeleton-text::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 255, 65, 0.08) 50%,
+    transparent 100%
+  );
+  animation: skeletonBarSweep 1.8s ease-in-out infinite;
+}
+
+.skeleton-text:last-child {
+  width: 70%;
+}
+
+/* ============================================
+   NEW: Enhanced Command Palette
+   ============================================ */
+
+.command-palette-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 10, 15, 0.75);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 100;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 20vh;
+  animation: overlayFadeIn 0.2s ease-out;
+}
+
+@keyframes overlayFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.command-palette-input {
+  width: 100%;
+  background: rgba(22, 22, 37, 0.9);
+  border: 1px solid rgba(0, 255, 65, 0.2);
+  border-radius: 0.75rem 0.75rem 0 0;
+  padding: 1rem 1.25rem;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 1rem;
+  color: #e0e0e0;
+  outline: none;
+  transition: all 0.25s ease-in-out;
+  box-shadow:
+    0 0 0 1px rgba(0, 255, 65, 0.05),
+    0 -4px 24px rgba(0, 0, 0, 0.4);
+}
+
+.command-palette-input:focus {
+  border-color: rgba(0, 255, 65, 0.5);
+  box-shadow:
+    0 0 0 1px rgba(0, 255, 65, 0.1),
+    0 0 16px rgba(0, 255, 65, 0.12),
+    0 -4px 24px rgba(0, 0, 0, 0.4);
+}
+
+.command-palette-input::placeholder {
+  color: rgba(224, 224, 224, 0.3);
+}
+
+.command-palette-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.625rem 1.25rem;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.85rem;
+  color: rgba(224, 224, 224, 0.7);
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+  border-left: 2px solid transparent;
+}
+
+.command-palette-item:hover {
+  background: rgba(0, 255, 65, 0.05);
+  color: #e0e0e0;
+  border-left-color: rgba(0, 255, 65, 0.3);
+}
+
+.command-palette-item-active {
+  background: rgba(0, 255, 65, 0.08);
+  color: #00ff41;
+  border-left-color: #00ff41;
+  box-shadow: inset 0 0 12px rgba(0, 255, 65, 0.04);
+}
+
+.command-palette-item-active .command-icon {
+  color: #00ff41;
+  text-shadow: 0 0 6px rgba(0, 255, 65, 0.4);
+}
+
+.command-palette-group {
+  padding: 0.5rem 1.25rem 0.375rem;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(0, 255, 65, 0.5);
+  border-top: 1px solid rgba(0, 255, 65, 0.06);
+}
+
+.command-palette-group:first-child {
+  border-top: none;
+}
+
+/* ============================================
+   NEW: Accessibility — Reduced Motion
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .chart-line {
+    animation: none;
+    opacity: 1;
+  }
+
+  .chart-dot {
+    transition: none;
+  }
+
+  .activity-pulse {
+    animation: none;
+    opacity: 1;
+    box-shadow: 0 0 4px rgba(0, 255, 65, 0.4);
+  }
+
+  .topology-node-active {
+    animation: none;
+    filter: drop-shadow(0 0 8px rgba(0, 255, 65, 0.5));
+  }
+
+  .topology-link-data {
+    animation: none;
+    stroke-dasharray: none;
+  }
+
+  .card-hologram-enhanced::before,
+  .card-hologram-enhanced::after {
+    animation: none;
+    opacity: 0;
+  }
+
+  .card-hologram-enhanced:hover::before {
+    opacity: 1;
+    background-position: 0% 50%;
+  }
+
+  .card-gradient-border::before {
+    animation: none;
+    background-position: 0% 50%;
+  }
+
+  .skeleton-shimmer,
+  .skeleton-bar::after,
+  .skeleton-circle::after,
+  .skeleton-text::after {
+    animation: none;
+  }
+
+  .command-palette-overlay {
+    animation: none;
+  }
+}
+
+/* ============================================
+   v2.1 Thinking Animation
+   ============================================ */
+.thinking-animation {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.thinking-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00ff41;
+  box-shadow: 0 0 8px rgba(0, 255, 65, 0.5);
+  animation: thinkingPulse 1.4s ease-in-out infinite;
+}
+
+@keyframes thinkingPulse {
+  0%, 80%, 100% {
+    transform: scale(0.6);
+    opacity: 0.3;
+  }
+  40% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+/* ============================================
+   v2.1 Markdown Renderer Styles
+   ============================================ */
+.markdown-renderer {
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.markdown-renderer h1,
+.markdown-renderer h2,
+.markdown-renderer h3,
+.markdown-renderer h4,
+.markdown-renderer h5,
+.markdown-renderer h6 {
+  scroll-margin-top: 1rem;
+}
+
+.markdown-renderer ul li {
+  list-style: none;
+}
+
+.markdown-renderer ol li {
+  list-style: decimal;
+}
+
+.markdown-renderer pre {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+}
+
+.markdown-renderer code {
+  font-family: 'Geist Mono', 'Fira Code', 'JetBrains Mono', monospace;
+}
+
+.markdown-renderer p:first-child {
+  margin-top: 0;
+}
+
+.markdown-renderer p:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-renderer table {
+  width: 100%;
+}
+
+.markdown-renderer > *:first-child {
+  margin-top: 0;
+}
+
+.markdown-renderer > *:last-child {
+  margin-bottom: 0;
+}
+
+/* ============================================
+   v2.1 Chat Message Scrollbar
+   ============================================ */
+.chat-scroll-area [data-radix-scroll-area-viewport] {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 255, 65, 0.2) transparent;
+}
+
+.chat-scroll-area [data-radix-scroll-area-viewport]::-webkit-scrollbar {
+  width: 4px;
+}
+
+.chat-scroll-area [data-radix-scroll-area-viewport]::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chat-scroll-area [data-radix-scroll-area-viewport]::-webkit-scrollbar-thumb {
+  background: rgba(0, 255, 65, 0.2);
+  border-radius: 2px;
+}
+
+.chat-scroll-area [data-radix-scroll-area-viewport]::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 255, 65, 0.4);
+}
