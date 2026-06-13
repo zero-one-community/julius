@@ -9,10 +9,22 @@
 ## 🛡️ Overview
 
 J.U.L.I.U.S is a comprehensive web surfing application designed for security researchers, penetration testers, and ethical hackers. It provides a curated intelligence grid organized across five operational levels — from surface web OSINT to restricted red team infrastructure — with integrated security features, privacy protection, and community collaboration tools.
+Not everything is documented but it will be soon 
+
+## Table of Contents
+* [Key Features](#Key-Features)
+* [🏗️ Architecture](#Architecture)
+* [Project Structure](#Project-Structure)
+* [Usage & install](#Getting-Started)
+* [Release](#Release)
+* [Features](#Security-Features)
+* [web surfing levels](#Operational-Levels)
+
+
 
 ### Key Features
 
-- **🔒 IP Detection & VPN Suggestion** — Real-time IP exposure detection with automatic VPN recommendations when your real IP is exposed
+- **🔒 IP Detection & VPN Suggestion** — Real-time IP exposure detection with automatic VPN recommendations when your real IP is exposed (doesn't work yet)
 - **🛡️ Security Center** — Comprehensive security dashboard with score tracking, blocked resources, tunneling, and privacy settings
 - **🛑 Ad & Tracker Blocking** — Integrated domain blocking system for trackers, ads, malware, and phishing
 - **🔐 Privacy Controls** — DNS-over-HTTPS, WebRTC blocking, canvas fingerprint protection, referrer stripping, cookie auto-delete, and JavaScript restriction
@@ -21,7 +33,7 @@ J.U.L.I.U.S is a comprehensive web surfing application designed for security res
 - **🔔 Notification System** — Real-time alerts for security events, updates, and community announcements
 - **🔗 Links Manager** — Curated collection of helpful links with search, filter, and star features
 - **⎆ Toolkit** — Direct access to verified open-source pentest tools
-- **◉ AI Assistants** — AI-powered security research assistants
+- **◉ AI Assistants** — AI-powered security research assistants [J.U.L.I.U.S ai]
 - **☰ Community** — Zero One community charter and collaboration channels
 - **🌐 Web Surf Checker** — URL security analysis with threat detection
 
@@ -250,7 +262,10 @@ Each API route is independently testable:
 5. Submit a pull request
 
 ---
-
+## Release
+some updates are on going for Windows/linux/android
+only windows/linux/android softwares avaliable due to testing purposes , but more updates will be added 
+get your platform software here :
 ## 📝 License
 
 This project is open source and available under the [MIT License](LICENSE).
