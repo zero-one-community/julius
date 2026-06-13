@@ -1,0 +1,91 @@
+// J.U.L.I.U.S - Justified Universal Link & Intelligence Utility System
+// Database Schema - Zero One Community
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// Notification System
+model Notification {
+  id          String   @id @default(cuid())
+  title       String
+  message     String
+  type        String   @default("info")  // info, warning, security, update, alert
+  priority    String   @default("low")   // low, medium, high, critical
+  category    String   @default("system") // system, security, update, community, privacy
+  read        Boolean  @default(false)
+  actionUrl   String?
+  actionLabel String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Helpful Links Storage
+model Link {
+  id          String   @id @default(cuid())
+  name        String
+  url         String
+  description String
+  category    String   @default("general") // general, security, osint, tools, privacy, community, reference
+  level       String   @default("L1")      // L1-L5
+  tags        String   @default("")         // comma-separated
+  starred     Boolean  @default(false)
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Security & IP Logs
+model SecurityLog {
+  id          String   @id @default(cuid())
+  eventType   String   // ip_detected, vpn_check, block_applied, tunnel_created, threat_found, privacy_alert
+  ipAddress   String?
+  isp         String?
+  country     String?
+  city        String?
+  isVpn       Boolean  @default(false)
+  isProxy     Boolean  @default(false)
+  isTor       Boolean  @default(false)
+  riskLevel   String   @default("low")   // low, medium, high, critical
+  details     String?
+  action      String?   // blocked, tunneled, warned, allowed
+  createdAt   DateTime @default(now())
+}
+
+// Blocked Resources
+model BlockedResource {
+  id          String   @id @default(cuid())
+  domain      String
+  reason      String   // tracker, ad, malware, phishing, malicious, user-blocked
+  category    String   @default("tracker") // tracker, ad, malware, phishing, custom
+  active      Boolean  @default(true)
+  hits        Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Surf Session
+model SurfSession {
+  id          String   @id @default(cuid())
+  url         String
+  title       String?
+  status      String   @default("active") // active, completed, blocked, failed
+  securityOk  Boolean  @default(true)
+  threats     String   @default("")  // comma-separated threat types found
+  startTime   DateTime @default(now())
+  endTime     DateTime?
+}
+
+// Privacy Settings
+model PrivacySetting {
+  id              String   @id @default(cuid())
+  settingKey      String   @unique
+  settingValue    String   @default("enabled")
+  description     String?
+  updatedAt       DateTime @updatedAt
+}
