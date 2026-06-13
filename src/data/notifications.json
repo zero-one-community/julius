@@ -1,0 +1,100 @@
+{
+  "notifications": [
+    {
+      "id": "n001",
+      "title": "Welcome to J.U.L.I.U.S",
+      "message": "Project J.U.L.I.U.S v2.0 is now operational. Your secure web surfing environment is ready. Explore all features from the navigation panel.",
+      "type": "info",
+      "priority": "medium",
+      "category": "system",
+      "read": false,
+      "actionUrl": null,
+      "actionLabel": null,
+      "createdAt": "2025-01-15T00:00:00Z"
+    },
+    {
+      "id": "n002",
+      "title": "Security: IP Exposure Detected",
+      "message": "Your real IP address has been detected. For your safety, we strongly recommend enabling VPN protection before conducting any security research. Visit the Security Center to review your exposure status.",
+      "type": "security",
+      "priority": "high",
+      "category": "privacy",
+      "read": false,
+      "actionUrl": "#security",
+      "actionLabel": "Open Security Center",
+      "createdAt": "2025-01-15T00:01:00Z"
+    },
+    {
+      "id": "n003",
+      "title": "New Resources Indexed",
+      "message": "47 new security research resources have been indexed across all 5 operational levels. Check the Level Explorer for the latest additions.",
+      "type": "update",
+      "priority": "medium",
+      "category": "update",
+      "read": false,
+      "actionUrl": "#levels",
+      "actionLabel": "View Levels",
+      "createdAt": "2025-01-14T12:00:00Z"
+    },
+    {
+      "id": "n004",
+      "title": "Ad Blocker Active",
+      "message": "The integrated ad and tracker blocker is now active. Known tracking domains and ad networks are being filtered from your browsing sessions.",
+      "type": "info",
+      "priority": "low",
+      "category": "privacy",
+      "read": false,
+      "actionUrl": null,
+      "actionLabel": null,
+      "createdAt": "2025-01-14T10:00:00Z"
+    },
+    {
+      "id": "n005",
+      "title": "OPSEC Level Upgrade Available",
+      "message": "Based on your recent activity, we recommend upgrading your OPSEC configuration to Level 2 (Enhanced). This includes VM isolation and VPN kill-switch enforcement.",
+      "type": "warning",
+      "priority": "medium",
+      "category": "security",
+      "read": false,
+      "actionUrl": "#opsec",
+      "actionLabel": "Review OPSEC Config",
+      "createdAt": "2025-01-13T18:00:00Z"
+    },
+    {
+      "id": "n006",
+      "title": "Community Update: Zero One Charter v2.1",
+      "message": "The Zero One community charter has been updated to include new guidelines for AI-assisted security research. Please review the updated community section.",
+      "type": "info",
+      "priority": "low",
+      "category": "community",
+      "read": true,
+      "actionUrl": "#community",
+      "actionLabel": "View Charter",
+      "createdAt": "2025-01-12T09:00:00Z"
+    },
+    {
+      "id": "n007",
+      "title": "Threat Intelligence Feed Updated",
+      "message": "Latest IoC feeds from AlienVault OTX and Abuse.ch have been synchronized. 1,247 new indicators of compromise added to the threat database.",
+      "type": "update",
+      "priority": "medium",
+      "category": "update",
+      "read": true,
+      "actionUrl": "#levels",
+      "actionLabel": "View Threat Intel",
+      "createdAt": "2025-01-11T14:30:00Z"
+    },
+    {
+      "id": "n008",
+      "title": "Privacy Alert: DNS Leak Possible",
+      "message": "A potential DNS leak has been detected in your current session. Enable DNS-over-HTTPS (DoH) in your security settings to prevent DNS query exposure.",
+      "type": "alert",
+      "priority": "critical",
+      "category": "privacy",
+      "read": false,
+      "actionUrl": "#security",
+      "actionLabel": "Fix Now",
+      "createdAt": "2025-01-10T22:00:00Z"
+    }
+  ]
+}

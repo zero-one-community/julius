@@ -1,0 +1,224 @@
+{
+  "links": [
+    {
+      "id": "l001",
+      "name": "Shodan",
+      "url": "https://www.shodan.io",
+      "description": "Search engine for internet-connected devices. Find exposed services, open ports, and industrial control systems.",
+      "category": "osint",
+      "level": "L1",
+      "tags": ["device-search", "port-scanning", "iot", "osint"],
+      "starred": true,
+      "active": true
+    },
+    {
+      "id": "l002",
+      "name": "Censys",
+      "url": "https://search.censys.io",
+      "description": "Internet asset discovery and attack surface monitoring. Maps TLS certificates, open services, and host configurations.",
+      "category": "osint",
+      "level": "L1",
+      "tags": ["certificate", "host-discovery", "attack-surface"],
+      "starred": false,
+      "active": true
+    },
+    {
+      "id": "l003",
+      "name": "Have I Been Pwned",
+      "url": "https://haveibeenpwned.com",
+      "description": "Check if email addresses or passwords have been exposed in known data breaches.",
+      "category": "osint",
+      "level": "L1",
+      "tags": ["breach-check", "credential", "osint"],
+      "starred": true,
+      "active": true
+    },
+    {
+      "id": "l004",
+      "name": "VirusTotal",
+      "url": "https://www.virustotal.com",
+      "description": "Multi-engine file and URL analysis platform. Scans with 70+ AV engines.",
+      "category": "security",
+      "level": "L1",
+      "tags": ["malware", "scanning", "threat-intel"],
+      "starred": true,
+      "active": true
+    },
+    {
+      "id": "l005",
+      "name": "Exploit-DB",
+      "url": "https://www.exploit-db.com",
+      "description": "Offensive Security's official exploit and vulnerability archive with CVE-indexed PoCs.",
+      "category": "security",
+      "level": "L2",
+      "tags": ["exploit", "poc", "cve", "offsec"],
+      "starred": false,
+      "active": true
+    },
+    {
+      "id": "l006",
+      "name": "MITRE CVE",
+      "url": "https://cve.mitre.org",
+      "description": "Standardized identifier system for publicly known cybersecurity vulnerabilities.",
+      "category": "security",
+      "level": "L2",
+      "tags": ["cve", "vulnerability", "standard"],
+      "starred": false,
+      "active": true
+    },
+    {
+      "id": "l007",
+      "name": "NVD NIST",
+      "url": "https://nvd.nist.gov",
+      "description": "National Vulnerability Database. CVSS scoring, severity ratings, and patch information.",
+      "category": "security",
+      "level": "L2",
+      "tags": ["cve", "cvss", "vulnerability", "nist"],
+      "starred": false,
+      "active": true
+    },
+    {
+      "id": "l008",
+      "name": "Nuclei Templates",
+      "url": "https://github.com/projectdiscovery/nuclei-templates",
+      "description": "12,000+ YAML templates covering CVEs, misconfigurations, and exposure checks.",
+      "category": "tools",
+      "level": "L2",
+      "tags": ["scanning", "automation", "templates"],
+      "starred": false,
+      "active": true
+    },
+    {
+      "id": "l009",
+      "name": "MISP Threat Sharing",
+      "url": "https://www.misp-project.org",
+      "description": "Open-source threat intelligence platform for sharing, storing, and correlating IoCs.",
+      "category": "osint",
+      "level": "L3",
+      "tags": ["threat-intel", "sharing", "ioc"],
+      "starred": false,
+      "active": true
+    },
+    {
+      "id": "l010",
+      "name": "AlienVault OTX",
+      "url": "https://otx.alienvault.com",
+      "description": "Open Threat Exchange - community-driven threat intelligence with pulses and IoCs.",
+      "category": "osint",
+      "level": "L3",
+      "tags": ["threat-intel", "community", "ioc"],
+      "starred": false,
+      "active": true
+    },
+    {
+      "id": "l011",
+      "name": "Ahmia Search",
+      "url": "https://ahmia.fi",
+      "description": "Tor search engine for discovering .onion services for legitimate research.",
+      "category": "security",
+      "level": "L4",
+      "tags": ["tor", "dark-web", "search"],
+      "starred": false,
+      "active": true
+    },
+    {
+      "id": "l012",
+      "name": "Metasploit Framework",
+      "url": "https://www.metasploit.com",
+      "description": "Penetration testing framework. Use only with written authorization (ROE).",
+      "category": "tools",
+      "level": "L5",
+      "tags": ["pentest", "framework", "exploitation"],
+      "starred": false,
+      "active": true
+    },
+    {
+      "id": "l013",
+      "name": "Mullvad VPN",
+      "url": "https://mullvad.net",
+      "description": "Privacy-focused VPN with kill-switch, WireGuard, and no-logging policy.",
+      "category": "privacy",
+      "level": "L1",
+      "tags": ["vpn", "privacy", "wireguard"],
+      "starred": true,
+      "active": true
+    },
+    {
+      "id": "l014",
+      "name": "ProtonVPN",
+      "url": "https://protonvpn.com",
+      "description": "Secure VPN by ProtonMail team with Secure Core architecture and DNS leak protection.",
+      "category": "privacy",
+      "level": "L1",
+      "tags": ["vpn", "privacy", "secure-core"],
+      "starred": true,
+      "active": true
+    },
+    {
+      "id": "l015",
+      "name": "Tor Project",
+      "url": "https://www.torproject.org",
+      "description": "The Onion Router - anonymous communication network for privacy-preserving research.",
+      "category": "privacy",
+      "level": "L2",
+      "tags": ["tor", "anonymity", "privacy"],
+      "starred": true,
+      "active": true
+    },
+    {
+      "id": "l016",
+      "name": "DuckDuckGo",
+      "url": "https://duckduckgo.com",
+      "description": "Privacy-focused search engine. No tracking, no filter bubble, no personalized results.",
+      "category": "privacy",
+      "level": "L1",
+      "tags": ["search", "privacy", "no-tracking"],
+      "starred": false,
+      "active": true
+    },
+    {
+      "id": "l017",
+      "name": "Hack The Box",
+      "url": "https://www.hackthebox.com",
+      "description": "Online cybersecurity training platform with vulnerable machines and challenges.",
+      "category": "tools",
+      "level": "L2",
+      "tags": ["training", "practice", "ctf"],
+      "starred": false,
+      "active": true
+    },
+    {
+      "id": "l018",
+      "name": "TryHackMe",
+      "url": "https://tryhackme.com",
+      "description": "Learn cybersecurity through guided, gamified lessons and hands-on labs.",
+      "category": "tools",
+      "level": "L2",
+      "tags": ["training", "learning", "beginner"],
+      "starred": false,
+      "active": true
+    },
+    {
+      "id": "l019",
+      "name": "DNSDumpster",
+      "url": "https://dnsdumpster.com",
+      "description": "DNS reconnaissance and domain research tool. Enumerates subdomains and records.",
+      "category": "osint",
+      "level": "L1",
+      "tags": ["dns", "recon", "subdomain"],
+      "starred": false,
+      "active": true
+    },
+    {
+      "id": "l020",
+      "name": "URLScan.io",
+      "url": "https://urlscan.io",
+      "description": "Website screenshot and analysis service for malicious content detection.",
+      "category": "security",
+      "level": "L1",
+      "tags": ["scanning", "analysis", "phishing"],
+      "starred": false,
+      "active": true
+    }
+  ]
+}
