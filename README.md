@@ -278,7 +278,7 @@ Each API route is independently testable:
 ## Release
 some updates are on going for Windows/linux/android
 only windows/linux/android softwares avaliable due to testing purposes , but more updates will be added 
-get your platform software here :
+get your platform software here : [RELEASE V2.2,0](https://github.com/zero-one-community/julius/releases/tag/v2.2.0)
 ## 📝 License
 
 This project is open source and available under the [MIT License](LICENSE).
